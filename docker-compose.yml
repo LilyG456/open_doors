@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: opendoors
+      POSTGRES_PASSWORD: opendoors
+      POSTGRES_DB: opendoors
+    ports:
+      - "5432:5432"
+    volumes:
+      - opendoors-db:/var/lib/postgresql/data
+
+  # Local-only fake SMTP server + web inbox, so magic-link emails can be
+  # tested without sending anything real. Inbox: http://localhost:8025
+  mailpit:
+    image: axllent/mailpit
+    restart: unless-stopped
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+volumes:
+  opendoors-db:

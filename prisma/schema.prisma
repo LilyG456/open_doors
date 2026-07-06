@@ -1,0 +1,297 @@
+// Open Doors backend data model.
+//
+// Design principle: nothing that reads as a "rating" or "rank" is stored directly.
+// People submit structured, honest, first-person reports about a single visit
+// (Experience + its optional yes/no/scale fields). Everything shown on a church's
+// page — the Community Snapshot bars, the transparency counts, the map pin color —
+// is *computed* from approved Experiences at read time (see lib/aggregation.ts).
+// That keeps the aggregate numbers traceable back to real submissions instead of
+// being editable facts that could be gamed or feel like a verdict.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------- Auth.js required models (Prisma adapter) ----------
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ---------- People ----------
+
+enum Role {
+  USER
+  MODERATOR
+  ADMIN
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  emailVerified DateTime?
+  // Shown publicly on their own experiences instead of their real name/email.
+  displayName   String?
+  image         String?
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+
+  identities  UserIdentity[]
+  experiences Experience[]
+  savedChurches SavedChurch[]
+  helpfulVotes  HelpfulVote[]
+  reports       Report[]
+  accounts    Account[]
+  sessions    Session[]
+}
+
+// The "I am..." chips used both for a user's own "People Like Me" profile
+// and for the identity tags attached to an individual experience.
+model Identity {
+  id    String @id @default(cuid())
+  label String @unique
+  order Int    @default(0)
+
+  users       UserIdentity[]
+  experiences ExperienceIdentity[]
+}
+
+model UserIdentity {
+  userId     String
+  identityId String
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  identity Identity @relation(fields: [identityId], references: [id], onDelete: Cascade)
+
+  @@id([userId, identityId])
+}
+
+// ---------- Churches ----------
+
+model Church {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  name         String
+  denomination String
+  address      String
+  city         String
+  state        String?
+  zip          String?
+  lat          Float
+  lng          Float
+  website      String?
+  serviceTimes String[]
+  attendance   String?
+  coverImage   String?
+  logoImage    String?
+  // Short factual/editorial blurb, not a review — e.g. "A liturgical, contemplative congregation..."
+  summary      String?
+
+  // Set only for churches imported from an external directory (see
+  // scripts/import-osm-churches.ts). Lets re-running an import upsert by
+  // stable external identity instead of creating duplicates, and marks a
+  // record as "factual directory data" rather than manually curated.
+  osmId String? @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tags        ChurchTag[]
+  experiences Experience[]
+  savedBy     SavedChurch[]
+
+  @@index([lat, lng])
+  @@index([city])
+}
+
+enum TagCategory {
+  THEOLOGY
+  ACCESSIBILITY
+  WORSHIP
+  COMMUNITY
+  MENTAL_HEALTH
+}
+
+// Factual/structural tags (e.g. "Wheelchair", "Liturgical", "Fully Affirming").
+// Kept separate from Experience so they can be curated/verified independent of
+// any one person's story.
+model Tag {
+  id       String      @id @default(cuid())
+  label    String
+  category TagCategory
+  icon     String?
+
+  churches ChurchTag[]
+
+  @@unique([label, category])
+}
+
+model ChurchTag {
+  churchId String
+  tagId    String
+
+  church Church @relation(fields: [churchId], references: [id], onDelete: Cascade)
+  tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([churchId, tagId])
+}
+
+// ---------- Experiences (the "reviews", reframed) ----------
+
+enum MemberStatus {
+  VISITOR
+  REGULAR_ATTENDER
+  CURRENT_MEMBER
+  FORMER_MEMBER
+}
+
+// Experiences publish immediately (APPROVED). PENDING is only reached
+// automatically, when a submission trips the spam/abuse filter — see
+// lib/moderation.ts — and means "auto-held, needs a human look."
+enum ModerationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum LgbtqExperience {
+  AFFIRMING
+  MIXED
+  NOT_AFFIRMING
+  NOT_REPORTED
+}
+
+enum TriState {
+  YES
+  SOME
+  NO
+  UNKNOWN
+}
+
+model Experience {
+  id       String @id @default(cuid())
+  churchId String
+  userId   String
+
+  church Church @relation(fields: [churchId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Public display fields. displayName is a pseudonym the user picks per-story,
+  // never their account name/email, so a story can't be traced to an account.
+  displayName  String
+  visitLabel   String
+  memberStatus MemberStatus
+  text         String @db.Text
+
+  // Structured, self-reported facts. All optional — someone can share a story
+  // without answering every question. These are the only inputs to the
+  // computed Community Snapshot; nothing here is itself a 1-5 "rating".
+  feltSafe            Boolean?
+  feltRespected       Boolean?
+  wouldReturn         Boolean?
+  lgbtqExperience     LgbtqExperience?
+  womenInLeadership   TriState?
+  accessibilityRating Int? // 1-5, presence/quality of accommodations they personally used
+  mentalHealthRating  Int? // 1-5, how openly/well mental health was supported
+
+  moderationStatus ModerationStatus @default(APPROVED)
+  moderationNote   String?
+
+  identities   ExperienceIdentity[]
+  helpfulVotes HelpfulVote[]
+  reports      Report[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([churchId, moderationStatus, createdAt])
+  @@index([userId])
+}
+
+// A member flagging a specific experience for review — spam, harassment,
+// doesn't seem genuine, etc. Reports never auto-hide content themselves
+// (that would let coordinated reporting silence real stories); they only
+// surface it in the admin dashboard for a human decision.
+model Report {
+  id           String   @id @default(cuid())
+  experienceId String
+  userId       String
+  reason       String
+
+  experience Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([experienceId, userId])
+}
+
+model ExperienceIdentity {
+  experienceId String
+  identityId   String
+
+  experience Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  identity   Identity   @relation(fields: [identityId], references: [id], onDelete: Cascade)
+
+  @@id([experienceId, identityId])
+}
+
+model HelpfulVote {
+  userId       String
+  experienceId String
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  experience Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@id([userId, experienceId])
+}
+
+model SavedChurch {
+  userId   String
+  churchId String
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  church Church @relation(fields: [churchId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@id([userId, churchId])
+}
