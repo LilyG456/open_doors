@@ -1,7 +1,9 @@
 import type { MapStatus, SnapshotMetric, Transparency } from "@/lib/aggregation"
+import type { DenominationalContext } from "@/lib/denomination-context"
 
 export type ExperienceLevel = MapStatus
 export type { SnapshotMetric }
+export type { DenominationalContext }
 
 export type Tag = {
   label: string
@@ -47,6 +49,7 @@ export type ChurchDetail = {
   lng: number
   status: ExperienceLevel
   snapshot: SnapshotMetric[]
+  denominationalContext: DenominationalContext
   theology: Tag[]
   accessibility: string[]
   worship: string[]

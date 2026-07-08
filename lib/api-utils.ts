@@ -31,6 +31,17 @@ export async function requireModerator() {
   return user
 }
 
+// Denominational Context is reference data that shapes what every visitor
+// reads about a whole tradition, not a single piece of content — reserved
+// for admins rather than the broader moderator role.
+export async function requireAdmin() {
+  const user = await requireUser()
+  if (user.role !== "ADMIN") {
+    throw new ApiError(403, "You don't have permission to do that.")
+  }
+  return user
+}
+
 /** Only resolves labels against the seeded, moderated identity taxonomy — never creates new ones on the fly. */
 export async function resolveIdentityIds(prisma: import("@prisma/client").PrismaClient, labels: string[]) {
   if (labels.length === 0) return [] as string[]

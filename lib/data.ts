@@ -111,6 +111,7 @@ export const identities = [
 
 export const resources = [
   {
+    slug: "how-to-visit-a-church",
     title: "How to Visit a Church for the First Time",
     description:
       "What to expect, what to wear, and gentle ways to ease in-person anxiety on your first visit.",
@@ -118,6 +119,7 @@ export const resources = [
     icon: "door-open",
   },
   {
+    slug: "understanding-christian-traditions",
     title: "Understanding Christian Traditions",
     description:
       "A plain-language guide to denominations, theology terms, and what they can mean in practice.",
@@ -125,6 +127,7 @@ export const resources = [
     icon: "book-open",
   },
   {
+    slug: "questions-to-ask-before-joining",
     title: "Questions to Ask Before Joining",
     description:
       "Thoughtful questions about leadership, inclusion, and values to help you discern fit.",
@@ -132,20 +135,15 @@ export const resources = [
     icon: "message-circle-question",
   },
   {
+    slug: "mental-health-resources",
     title: "Mental Health Resources",
     description:
-      "Hotlines, directories, and faith-sensitive counseling options for when you need support.",
+      "Hotlines, directories, and faith-sensitive counseling options — including LGBTQ+-affirming and LGBTQ+ Christian organizations.",
     category: "Support",
     icon: "brain",
   },
   {
-    title: "LGBTQ Christian Organizations",
-    description:
-      "Communities and advocacy groups offering connection, resources, and belonging.",
-    category: "Community",
-    icon: "rainbow",
-  },
-  {
+    slug: "finding-community",
     title: "Finding Community",
     description:
       "Ways to build real relationships beyond Sunday—small groups, service, and shared meals.",

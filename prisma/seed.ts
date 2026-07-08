@@ -2,6 +2,7 @@ import "dotenv/config"
 import { TagCategory, MemberStatus, LgbtqExperience, TriState } from "@prisma/client"
 import { PrismaPg } from "@prisma/adapter-pg"
 import { PrismaClient } from "@prisma/client"
+import { seedDenominations } from "./denominations"
 
 const prisma = new PrismaClient({
   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
@@ -416,6 +417,9 @@ const CHURCHES: SeedChurch[] = [
 ]
 
 async function main() {
+  console.log("Seeding denominations...")
+  await seedDenominations(prisma)
+
   console.log("Seeding identities...")
   for (const [i, label] of IDENTITIES.entries()) {
     await prisma.identity.upsert({

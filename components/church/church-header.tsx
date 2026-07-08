@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import Image from "next/image"
 import { useSession } from "next-auth/react"
 import type { ChurchDetail } from "@/lib/types"
@@ -9,7 +10,7 @@ import { experienceMeta } from "@/lib/data"
 import { ExperienceDot } from "@/components/experience-dot"
 import { ChurchLocationThumb } from "@/components/church-location-thumb"
 import { Button } from "@/components/ui/button"
-import { MapPin, Globe, Clock, Users, Bookmark, Share2, Check } from "lucide-react"
+import { MapPin, Globe, Clock, Users, Bookmark, Share2, Check, PencilLine } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 function InfoLine({
@@ -136,6 +137,14 @@ export function ChurchHeader({
           <Button variant="outline">
             <Share2 className="size-4" />
             Share
+          </Button>
+          <Button
+            variant="outline"
+            nativeButton={false}
+            render={<Link href={`/church/${church.slug}/suggest-edit`} />}
+          >
+            <PencilLine className="size-4" />
+            Suggest an Edit
           </Button>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation"
+import { notFound, permanentRedirect } from "next/navigation"
 import Link from "next/link"
 import { prisma } from "@/lib/prisma"
 import { auth } from "@/lib/auth"
@@ -10,6 +10,7 @@ import { CommunitySnapshot } from "@/components/church/community-snapshot"
 import { TheologyCard } from "@/components/church/theology-card"
 import { TransparencySection } from "@/components/church/transparency-section"
 import { VisitorStories } from "@/components/church/visitor-stories"
+import { DenominationalContextCard } from "@/components/church/denominational-context"
 import { ArrowLeft } from "lucide-react"
 
 const MEMBER_STATUS_LABEL: Record<string, Story["status"]> = {
@@ -19,12 +20,30 @@ const MEMBER_STATUS_LABEL: Record<string, Story["status"]> = {
   FORMER_MEMBER: "Former Member",
 }
 
-async function getChurch(slug: string) {
-  const church = await prisma.church.findUnique({
-    where: { slug },
+/**
+ * Falls back to `previousSlugs` when the current slug doesn't match — an
+ * admin renaming a church (see app/api/admin/churches/[id]/route.ts) would
+ * otherwise silently 404 every bookmark, shared link, and search result
+ * pointing at the old URL. `redirectTo` is only set when we found the
+ * church via an *old* slug, so the caller knows to send a permanent
+ * redirect rather than render in place.
+ */
+async function findChurchBySlug(slug: string) {
+  const direct = await prisma.church.findUnique({ where: { slug }, include: churchIncludeForShaping })
+  if (direct) return { record: direct, redirectTo: null as string | null }
+
+  const renamed = await prisma.church.findFirst({
+    where: { previousSlugs: { has: slug } },
     include: churchIncludeForShaping,
   })
-  return church ? toChurchDetail(church as unknown as ChurchWithRelations) : null
+  if (renamed) return { record: renamed, redirectTo: renamed.slug }
+
+  return { record: null, redirectTo: null }
+}
+
+async function getChurch(slug: string) {
+  const { record } = await findChurchBySlug(slug)
+  return record ? toChurchDetail(record as unknown as ChurchWithRelations) : null
 }
 
 async function getStories(churchId: string, userId: string | undefined): Promise<Story[]> {
@@ -73,10 +92,8 @@ export default async function ChurchPage({
   const { slug } = await params
   const session = await auth()
 
-  const churchRecord = await prisma.church.findUnique({
-    where: { slug },
-    include: churchIncludeForShaping,
-  })
+  const { record: churchRecord, redirectTo } = await findChurchBySlug(slug)
+  if (redirectTo) permanentRedirect(`/church/${redirectTo}`)
   if (!churchRecord) notFound()
 
   const church = toChurchDetail(churchRecord as unknown as ChurchWithRelations)
@@ -101,6 +118,10 @@ export default async function ChurchPage({
         </Link>
 
         <ChurchHeader church={church} initiallySaved={initiallySaved} />
+
+        <div className="mt-6">
+          <DenominationalContextCard church={church} isAdmin={session?.user?.role === "ADMIN"} />
+        </div>
 
         <div className="mt-6 grid gap-6 lg:grid-cols-5">
           <div className="flex flex-col gap-6 lg:col-span-3">

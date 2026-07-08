@@ -49,7 +49,7 @@ function average(values: (number | null)[]) {
   return answered.reduce((a, b) => a + b, 0) / answered.length
 }
 
-function majority<T extends string>(values: (T | null)[]): T | null {
+export function majority<T extends string>(values: (T | null)[]): T | null {
   const counts = new Map<T, number>()
   for (const v of values) {
     if (v === null) continue

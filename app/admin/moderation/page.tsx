@@ -2,6 +2,7 @@ import { redirect } from "next/navigation"
 import { auth } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
 import { ModerationQueue } from "@/components/admin/moderation-queue"
+import { AdminNav } from "@/components/admin/admin-nav"
 
 export const metadata = {
   title: "Moderation Queue · Open Doors",
@@ -49,6 +50,7 @@ export default async function ModerationPage() {
 
   return (
     <div className="mx-auto w-full max-w-4xl px-4 pb-16 pt-10 sm:px-6">
+      <AdminNav active="/admin/moderation" />
       <h1 className="font-serif text-2xl font-semibold text-foreground sm:text-3xl">
         Moderation queue
       </h1>

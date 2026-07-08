@@ -1,6 +1,7 @@
+import Link from "next/link"
 import { resources } from "@/lib/data"
 import { TagIcon } from "@/components/tag-icon"
-import { ArrowRight, LifeBuoy } from "lucide-react"
+import { ArrowRight, LifeBuoy, Heart } from "lucide-react"
 
 export const metadata = {
   title: "Resources · Open Doors",
@@ -11,7 +12,7 @@ export const metadata = {
 export default function ResourcesPage() {
   return (
     <div className="mx-auto w-full max-w-5xl px-4 pb-16 pt-10 sm:px-6">
-        <div className="mb-10 text-center">
+        <div className="mb-8 text-center">
           <span className="text-xs font-medium uppercase tracking-wide text-primary">
             Resources
           </span>
@@ -24,11 +25,38 @@ export default function ResourcesPage() {
           </p>
         </div>
 
+        <div className="mx-auto mb-10 flex max-w-3xl items-start gap-4 rounded-3xl border border-primary/25 bg-primary/5 p-6 text-left sm:p-7">
+          <Heart className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
+          <div>
+            <h2 className="font-serif text-lg font-semibold text-foreground">A note before you begin</h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              These guides come from my own experiences, conversations with others, and research. They are
+              not written by a pastor, therapist, lawyer, or other professional, and they aren&apos;t meant to
+              tell you what decisions you should make.
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              Everyone&apos;s faith journey is different. My hope is simply to offer gentle ideas, questions,
+              and resources that might make the path feel a little less lonely.
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              If you&apos;re in crisis or need professional support, please reach out to a trusted mental
+              health professional, emergency services, or one of the organizations linked in the{" "}
+              <Link
+                href="/resources/mental-health-resources"
+                className="font-medium text-foreground underline-offset-2 hover:underline"
+              >
+                Mental Health Resources
+              </Link>{" "}
+              guide.
+            </p>
+          </div>
+        </div>
+
         <div className="grid gap-4 sm:grid-cols-2">
           {resources.map((r) => (
-            <a
-              key={r.title}
-              href="#"
+            <Link
+              key={r.slug}
+              href={`/resources/${r.slug}`}
               className="group flex flex-col rounded-3xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:shadow-md"
             >
               <div className="mb-4 flex size-11 items-center justify-center rounded-2xl bg-primary/10">
@@ -45,13 +73,13 @@ export default function ResourcesPage() {
                 Read more
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
               </span>
-            </a>
+            </Link>
           ))}
         </div>
 
-        <div className="mt-10 flex flex-col items-start gap-4 rounded-3xl border border-muted-blue/30 bg-muted-blue/5 p-6 sm:flex-row sm:items-center sm:p-8">
-          <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-muted-blue/15">
-            <LifeBuoy className="size-6 text-muted-blue" />
+        <div className="mt-10 flex flex-col items-start gap-4 rounded-3xl border border-blue/30 bg-blue/5 p-6 sm:flex-row sm:items-center sm:p-8">
+          <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-blue/15">
+            <LifeBuoy className="size-6 text-blue" />
           </div>
           <div>
             <h2 className="font-serif text-lg font-semibold text-foreground">

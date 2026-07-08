@@ -8,16 +8,19 @@
  * reports (see lib/aggregation.ts). Imported churches will show as "limited
  * information" until visitors submit experiences, which is correct.
  *
- * Re-running this script is safe: each OSM element is upserted by a stable
- * `osmId` (e.g. "node/123456"), so it updates existing imported rows instead
- * of duplicating them. It never touches manually-seeded churches (which have
- * osmId = null).
+ * Re-running this script is safe: each OSM element is matched by a stable
+ * `osmId` (e.g. "node/123456") to avoid creating duplicates. If a church
+ * with that osmId already exists, it's left completely untouched — no
+ * fields are overwritten — so admin corrections and approved suggestions
+ * (see app/admin/church-edit-queue) always survive a re-import. It never
+ * touches manually-seeded churches either (which have osmId = null).
  *
  * Usage: npx tsx scripts/import-osm-churches.ts [--state=WA] [--dry-run]
  */
 import "dotenv/config"
 import { PrismaClient } from "@prisma/client"
 import { PrismaPg } from "@prisma/adapter-pg"
+import { loadDenominationIndex, matchDenominationWithIndex } from "../lib/denomination-matching"
 
 const prisma = new PrismaClient({
   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
@@ -85,6 +88,15 @@ function titleCase(s: string) {
 function denominationFromTags(tags: Record<string, string>): string {
   if (tags.denomination) return titleCase(tags.denomination)
   return "Christian (denomination not specified)"
+}
+
+// Matching runs on the raw OSM tag (e.g. "southern_baptist"), not the
+// title-cased display string, since that's the form our aliases are seeded
+// against. Falls back to the same "not specified" string the display value
+// uses, so an untagged church correctly lands as "unmatched" rather than
+// "non-denominational" (those are different admin-triage states).
+function rawDenominationFromTags(tags: Record<string, string>): string {
+  return tags.denomination ?? "Christian (denomination not specified)"
 }
 
 function addressFromTags(tags: Record<string, string>): string {
@@ -213,9 +225,12 @@ async function main() {
   const existingSlugs = new Set(
     (await prisma.church.findMany({ select: { slug: true } })).map((c) => c.slug),
   )
+  const denominationIndex = await loadDenominationIndex(prisma)
 
   let created = 0
-  let updated = 0
+  let alreadyPresent = 0
+  let denominationMatched = 0
+  let denominationUnmatched = 0
 
   for (const [i, c] of deduped.entries()) {
     const city = cityFromTags(c.tags)
@@ -226,10 +241,15 @@ async function main() {
       slug = `${baseSlug}-${suffix++}`
     }
 
+    const denominationMatch = matchDenominationWithIndex(rawDenominationFromTags(c.tags), denominationIndex)
+    if (denominationMatch.kind === "matched") denominationMatched++
+    else if (denominationMatch.kind === "unmatched") denominationUnmatched++
+
     const data = {
       slug,
       name: c.name,
       denomination: denominationFromTags(c.tags),
+      denominationId: denominationMatch.kind === "matched" ? denominationMatch.denominationId : null,
       address: addressFromTags(c.tags),
       city,
       state: STATE_CODE,
@@ -241,21 +261,31 @@ async function main() {
       osmId: c.osmId,
     }
 
+    // Existing churches are never updated by this script, full stop — not
+    // just denominationId. Once a church is imported, an admin may have
+    // corrected its name/address/website/service times directly, or
+    // approved a visitor's suggested edit (see app/admin/church-edit-queue).
+    // A later re-import must not silently overwrite any of that; it should
+    // only ever add churches OSM knows about that we don't have yet.
+    // Re-matching denominations for existing churches is a separate,
+    // explicit step — see scripts/match-denominations.ts.
+    const existing = await prisma.church.findUnique({ where: { osmId: c.osmId }, select: { id: true } })
+
     if (dryRun) {
       existingSlugs.add(slug)
-      created++
+      if (existing) alreadyPresent++
+      else created++
       continue
     }
 
-    const existing = await prisma.church.findUnique({ where: { osmId: c.osmId }, select: { id: true } })
-    await prisma.church.upsert({
-      where: { osmId: c.osmId },
-      update: data,
-      create: data,
-    })
-    existingSlugs.add(slug)
-    if (existing) updated++
-    else created++
+    if (existing) {
+      existingSlugs.add(slug)
+      alreadyPresent++
+    } else {
+      await prisma.church.create({ data })
+      existingSlugs.add(slug)
+      created++
+    }
 
     if ((i + 1) % 250 === 0) {
       console.log(`  ...${i + 1}/${deduped.length} processed`)
@@ -264,8 +294,8 @@ async function main() {
 
   console.log(
     dryRun
-      ? `Dry run: would create/update ${created} churches. Re-run without --dry-run to write to the database.`
-      : `Done. Created ${created}, updated ${updated} churches from OpenStreetMap.`,
+      ? `Dry run: would create ${created} new churches (${alreadyPresent} already present and left untouched). Re-run without --dry-run to write to the database.`
+      : `Done. Created ${created} new churches from OpenStreetMap. ${alreadyPresent} already existed and were left untouched (edit them via /admin instead).`,
   )
 
   await prisma.$disconnect()

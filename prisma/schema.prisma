@@ -72,13 +72,17 @@ model User {
   role          Role      @default(USER)
   createdAt     DateTime  @default(now())
 
-  identities  UserIdentity[]
-  experiences Experience[]
-  savedChurches SavedChurch[]
-  helpfulVotes  HelpfulVote[]
-  reports       Report[]
-  accounts    Account[]
-  sessions    Session[]
+  identities           UserIdentity[]
+  experiences          Experience[]
+  savedChurches        SavedChurch[]
+  helpfulVotes         HelpfulVote[]
+  reports              Report[]
+  verifiedChurches     ChurchVerification[]
+  reviewedSuggestions  DenominationSuggestion[]
+  submittedChurchEdits ChurchEditSuggestion[]   @relation("SubmittedChurchEdits")
+  reviewedChurchEdits  ChurchEditSuggestion[]   @relation("ReviewedChurchEdits")
+  accounts             Account[]
+  sessions             Session[]
 }
 
 // The "I am..." chips used both for a user's own "People Like Me" profile
@@ -105,29 +109,46 @@ model UserIdentity {
 // ---------- Churches ----------
 
 model Church {
-  id           String   @id @default(cuid())
-  slug         String   @unique
-  name         String
-  denomination String
-  address      String
-  city         String
-  state        String?
-  zip          String?
-  lat          Float
-  lng          Float
-  website      String?
-  serviceTimes String[]
-  attendance   String?
-  coverImage   String?
-  logoImage    String?
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  // Every slug this church has ever had, oldest first, recorded whenever an
+  // admin renames it (see the church PATCH route). Lets old bookmarks,
+  // shared links, and search results redirect to the current page instead
+  // of 404ing — see app/church/[slug]/page.tsx.
+  previousSlugs String[]
+  name          String
+  denomination  String
+  address       String
+  city          String
+  state         String?
+  zip           String?
+  lat           Float
+  lng           Float
+  website       String?
+  serviceTimes  String[]
+  attendance    String?
+  coverImage    String?
+  logoImage     String?
   // Short factual/editorial blurb, not a review — e.g. "A liturgical, contemplative congregation..."
-  summary      String?
+  summary       String?
 
   // Set only for churches imported from an external directory (see
   // scripts/import-osm-churches.ts). Lets re-running an import upsert by
   // stable external identity instead of creating duplicates, and marks a
   // record as "factual directory data" rather than manually curated.
   osmId String? @unique
+
+  // Denomination-level reference data (see the Denomination model below).
+  // Null means either "not yet matched" (raw string didn't hit an alias —
+  // surfaced in the admin triage queue) or "genuinely non-denominational."
+  // `denomination` above stays the raw/display string regardless, so nothing
+  // that already renders it breaks.
+  denominationId  String?
+  denominationRef Denomination? @relation(fields: [denominationId], references: [id])
+
+  verification    ChurchVerification?
+  suggestions     DenominationSuggestion[]
+  editSuggestions ChurchEditSuggestion[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -138,6 +159,7 @@ model Church {
 
   @@index([lat, lng])
   @@index([city])
+  @@index([denominationId])
 }
 
 enum TagCategory {
@@ -170,6 +192,284 @@ model ChurchTag {
   tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
   @@id([churchId, tagId])
+}
+
+enum ChurchEditSubmitterRole {
+  VISITOR
+  CHURCH_REPRESENTATIVE
+}
+
+// A community-submitted correction to a church's *factual* information —
+// address, website, service times, summary blurb, or which curated tags
+// apply (accessibility, worship style, programs, etc.) — as distinct from
+// an Experience, which is a personal first-hand story. Anyone can submit
+// one (self-identifying as a visitor or someone affiliated with the
+// church); nothing here touches the Church row until an admin approves it
+// in the "Church Edit Queue" (/admin/church-edit-queue), at which point all
+// proposed changes are applied together. Reuses SuggestionStatus (see the
+// Denominational Context section below) since the review lifecycle is
+// identical to a DenominationSuggestion.
+model ChurchEditSuggestion {
+  id       String @id @default(cuid())
+  churchId String
+  church   Church @relation(fields: [churchId], references: [id], onDelete: Cascade)
+
+  submittedById String
+  submittedBy   User                    @relation("SubmittedChurchEdits", fields: [submittedById], references: [id], onDelete: Cascade)
+  submitterRole ChurchEditSubmitterRole
+
+  // Every field below is a *proposed* value — null/empty means "no change
+  // suggested for this," not "clear the existing value."
+  website      String?
+  address      String?
+  city         String?
+  serviceTimes String[]
+  summary      String?
+
+  // Tag ids (not a relation — these are proposals, not yet real ChurchTag
+  // rows) to attach to the church on approval, one array per Tag category.
+  addAccessibilityTagIds String[]
+  addWorshipTagIds       String[]
+  addCommunityTagIds     String[]
+  addMentalHealthTagIds  String[]
+  addTheologyTagIds      String[]
+
+  // Free-text context/rationale, and the escape valve for anything that
+  // doesn't fit a structured field above (e.g. a program not yet in our tag
+  // vocabulary).
+  note String? @db.Text
+
+  status       SuggestionStatus @default(PENDING)
+  reviewedById String?
+  reviewedBy   User?            @relation("ReviewedChurchEdits", fields: [reviewedById], references: [id], onDelete: SetNull)
+  reviewedAt   DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([churchId])
+  @@index([status])
+}
+
+// ---------- Denominational Context ----------
+//
+// Background reference data about a religious body/tradition — sourced from
+// public denominational statements, never from any one congregation. It
+// exists to give visitors context before they've collected any first-hand
+// reports, and it must never be presented as a claim about what a specific
+// local church believes or does: local practice can and does vary from
+// official denominational policy. See lib/denomination-context.ts for how
+// this is combined with a church's own ChurchVerification (if any) and
+// aggregated visitor Experience data into the confidence-labeled "Denominational
+// Context" section rendered by components/church/denominational-context.tsx.
+
+enum PolicyStatus {
+  YES
+  NO
+  VARIES
+  UNKNOWN
+  // The office/practice doesn't exist in this body's polity at all (e.g. no
+  // "bishop" role in a strictly congregational denomination that also
+  // doesn't ordain women), so "Yes/No" would misleadingly imply the question
+  // was actively considered and declined.
+  NOT_APPLICABLE
+}
+
+enum Tradition {
+  CATHOLIC
+  EASTERN_ORTHODOX
+  ORIENTAL_ORTHODOX
+  BAPTIST
+  METHODIST
+  LUTHERAN
+  PRESBYTERIAN
+  ANGLICAN
+  PENTECOSTAL
+  RESTORATION_MOVEMENT
+  LATTER_DAY_SAINT
+  SEVENTH_DAY_ADVENTIST
+  NON_DENOMINATIONAL
+  // A church formally affiliated with more than one denomination at once
+  // (e.g. a federated/union church, or a congregation in full communion
+  // with two traditions) — genuinely distinct from NON_DENOMINATIONAL, which
+  // means no denominational affiliation at all rather than several at once.
+  ECUMENICAL
+  MAINLINE_PROTESTANT
+  EVANGELICAL
+  WESLEYAN_HOLINESS
+  ANABAPTIST
+  OTHER
+  UNKNOWN
+  // Deprecated: superseded by EASTERN_ORTHODOX/ORIENTAL_ORTHODOX and
+  // LUTHERAN respectively. Kept (rather than removed, which Postgres can't
+  // do for an enum without a disruptive type-swap) only so any historical
+  // row that still references one of these the moment before a data
+  // migration runs doesn't hard-fail. Nothing should newly select these —
+  // see lib/denomination-labels.ts, which excludes them from the options list.
+  ORTHODOX
+  CONFESSIONAL
+}
+
+enum Governance {
+  EPISCOPAL
+  PRESBYTERIAN
+  CONGREGATIONAL
+  CONNECTIONAL
+  HIERARCHICAL
+  REPRESENTATIVE
+  SYNODICAL
+  COOPERATIVE
+  OTHER
+  UNKNOWN
+}
+
+// Shown next to every belief field so a reader can see at a glance whether
+// it reflects the denomination's official stance, this specific church's own
+// published statement, what visitors have reported, or nothing at all.
+enum BeliefConfidence {
+  DENOMINATION_ONLY
+  VERIFIED_CHURCH_WEBSITE
+  VISITOR_REPORTED
+  UNKNOWN
+}
+
+model Denomination {
+  id   String @id @default(cuid())
+  name String @unique
+
+  tradition  Tradition  @default(UNKNOWN)
+  governance Governance @default(UNKNOWN)
+
+  // A sentence or two of descriptive context (e.g. "Traditionally traces its
+  // origins to the early Christian Church in the 1st century AD..."), shown
+  // under an "Origins" heading instead of a bare year — `founded` alone
+  // conflates "when this tradition began" with "when this specific
+  // organization was formally constituted," which for most bodies are very
+  // different dates. Falls back to a generated "Founded in {founded}"
+  // sentence when left blank.
+  originsNote      String?
+  founded          Int?
+  headquarters     String?
+  membershipApprox String?
+  website          String?
+  beliefsUrl       String?
+
+  allowsLgbtqClergy               PolicyStatus @default(UNKNOWN)
+  allowsSameSexMarriage           PolicyStatus @default(UNKNOWN)
+  requiresChurchesSameSexMarriage PolicyStatus @default(UNKNOWN)
+  allowsWomenPastors              PolicyStatus @default(UNKNOWN)
+  allowsWomenBishops              PolicyStatus @default(UNKNOWN)
+
+  communionPractice String?
+  baptismPractice   String?
+  // Free-text nuance that the fixed fields above can't capture (e.g. "pastor
+  // discretion" carve-outs) — always paired with a source, never asserted on
+  // its own.
+  notes             String? @db.Text
+
+  lastUpdated DateTime @default(now())
+
+  sources     DenominationSource[]
+  aliases     DenominationAlias[]
+  churches    Church[]
+  suggestions DenominationSuggestion[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// A denomination-level fact is often backed by more than one citation (e.g.
+// a news report of a policy change plus the denomination's own position
+// paper). Kept separate from Denomination so adding a source never means
+// overwriting or losing an earlier one.
+model DenominationSource {
+  id             String   @id @default(cuid())
+  denominationId String
+  url            String
+  label          String?
+  retrievedAt    DateTime @default(now())
+
+  denomination Denomination @relation(fields: [denominationId], references: [id], onDelete: Cascade)
+
+  @@index([denominationId])
+}
+
+// Data-driven OSM/free-text -> Denomination matching (see
+// lib/denomination-matching.ts), instead of a hardcoded JS lookup table, so
+// admins can extend coverage without a deploy.
+model DenominationAlias {
+  id    String @id @default(cuid())
+  // Normalized (lowercased/trimmed) raw string, e.g. "umc", "southern baptist".
+  alias String @unique
+
+  denominationId String
+  denomination   Denomination @relation(fields: [denominationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}
+
+// An admin's confirmation that a specific church's own website/statement
+// says something different (or more specific) than the denomination default
+// — e.g. an LCMS congregation that has publicly broken from the synod's
+// stance. Optional and per-church; any field left null falls back to
+// denomination-level data or visitor reports (see lib/denomination-context.ts).
+model ChurchVerification {
+  id       String @id @default(cuid())
+  churchId String @unique
+  church   Church @relation(fields: [churchId], references: [id], onDelete: Cascade)
+
+  lgbtqClergy                     PolicyStatus?
+  sameSexMarriage                 PolicyStatus?
+  requiresChurchesSameSexMarriage PolicyStatus?
+  womenPastors                    PolicyStatus?
+  womenBishops                    PolicyStatus?
+
+  sourceUrl String
+  note      String?
+
+  verifiedById String?
+  verifiedBy   User?    @relation(fields: [verifiedById], references: [id], onDelete: SetNull)
+  verifiedAt   DateTime @default(now())
+}
+
+enum SuggestionStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+// A candidate denomination match for a church that isn't linked yet,
+// produced by an automated scan (see scripts/scan-church-websites.ts and
+// lib/website-denomination-scan.ts) rather than the deterministic alias
+// table — so it always needs a human decision before it touches Church.
+// denominationId. Reviewed in the admin "Verification Queue"
+// (/admin/verification-queue).
+model DenominationSuggestion {
+  id       String @id @default(cuid())
+  churchId String
+  church   Church @relation(fields: [churchId], references: [id], onDelete: Cascade)
+
+  // Null means the scan ran and found no denominational signal at all —
+  // still worth recording (confirms the check happened) rather than
+  // silently doing nothing, but there's nothing for "Accept" to link.
+  suggestedDenominationId String?
+  suggestedDenomination   Denomination? @relation(fields: [suggestedDenominationId], references: [id], onDelete: Cascade)
+
+  // 0-100, null when suggestedDenominationId is also null (no signal).
+  confidence Int?
+  // The exact text snippet that triggered the match, so a reviewer can see
+  // *why* without re-visiting the site themselves.
+  evidence   String? @db.Text
+  sourceUrl  String?
+
+  status       SuggestionStatus @default(PENDING)
+  reviewedById String?
+  reviewedBy   User?            @relation(fields: [reviewedById], references: [id], onDelete: SetNull)
+  reviewedAt   DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([churchId])
+  @@index([status])
 }
 
 // ---------- Experiences (the "reviews", reframed) ----------
@@ -217,7 +517,7 @@ model Experience {
   displayName  String
   visitLabel   String
   memberStatus MemberStatus
-  text         String @db.Text
+  text         String       @db.Text
 
   // Structured, self-reported facts. All optional — someone can share a story
   // without answering every question. These are the only inputs to the
@@ -249,7 +549,7 @@ model Experience {
 // (that would let coordinated reporting silence real stories); they only
 // surface it in the admin dashboard for a human decision.
 model Report {
-  id           String   @id @default(cuid())
+  id           String @id @default(cuid())
   experienceId String
   userId       String
   reason       String

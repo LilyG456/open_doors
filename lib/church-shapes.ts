@@ -4,6 +4,12 @@ import {
   computeMapStatus,
   type AggregatableExperience,
 } from "@/lib/aggregation"
+import {
+  computeDenominationalContext,
+  type ChurchVerificationInput,
+  type DenominationRefInput,
+} from "@/lib/denomination-context"
+import { isNonDenominationalRaw } from "@/lib/denomination-matching"
 
 type TagRelation = { tag: { label: string; category: string; icon: string | null } }
 
@@ -26,6 +32,8 @@ export type ChurchWithRelations = {
   summary: string | null
   tags: TagRelation[]
   experiences: AggregatableExperience[]
+  denominationRef: DenominationRefInput
+  verification: ChurchVerificationInput
 }
 
 function tagsByCategory(church: ChurchWithRelations, category: string) {
@@ -60,6 +68,12 @@ export function toChurchDetail(church: ChurchWithRelations) {
   const snapshot = computeSnapshot(church.experiences)
   const transparency = computeTransparency(church.experiences)
   const status = computeMapStatus(church.experiences)
+  const denominationalContext = computeDenominationalContext(
+    isNonDenominationalRaw(church.denomination),
+    church.denominationRef,
+    church.verification,
+    church.experiences,
+  )
 
   return {
     id: church.id,
@@ -79,6 +93,7 @@ export function toChurchDetail(church: ChurchWithRelations) {
     status,
     snapshot,
     transparency,
+    denominationalContext,
     theology: church.tags
       .filter((t) => t.tag.category === "THEOLOGY")
       .map((t) => ({ label: t.tag.label, icon: t.tag.icon })),
@@ -105,4 +120,6 @@ export const churchIncludeForShaping = {
       identities: { select: { identity: { select: { label: true } } } },
     },
   },
+  denominationRef: { include: { sources: { select: { url: true, label: true } } } },
+  verification: true,
 } as const

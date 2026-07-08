@@ -15,14 +15,14 @@ const columns = [
     links: [
       { href: "/resources", label: "Resources" },
       { href: "/about", label: "About Open Doors" },
-      { href: "/resources", label: "Questions to Ask" },
+      { href: "/resources/questions-to-ask-before-joining", label: "Questions to Ask" },
     ],
   },
   {
     title: "Support",
     links: [
       { href: "/share", label: "Share Your Experience" },
-      { href: "/resources", label: "Mental Health Resources" },
+      { href: "/resources/mental-health-resources", label: "Mental Health Resources" },
       { href: "/about", label: "Our Approach" },
     ],
   },
