@@ -8,8 +8,14 @@ import { prisma } from "@/lib/prisma"
 import { churchIncludeForShaping, toChurchSummary, type ChurchWithRelations } from "@/lib/church-shapes"
 
 // Featured churches and their stats change as new experiences are approved,
-// so this page can't be frozen at build time — revalidate it periodically.
-export const revalidate = 60
+// so this can't be frozen at build time. Also deliberately not ISR
+// (revalidate): a periodic-revalidate page is still eagerly prerendered
+// once *at build time*, which queries the DB from the build environment —
+// fine locally, but on platforms like Railway the build container can't
+// reach the private network the DB lives on (only the running app can).
+// force-dynamic renders per-request instead, so the DB is only ever
+// queried at runtime.
+export const dynamic = "force-dynamic"
 
 const values = [
   {

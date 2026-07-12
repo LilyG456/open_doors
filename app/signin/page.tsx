@@ -28,7 +28,7 @@ export default async function SignInPage({
           className="mt-6 flex flex-col gap-3"
           action={async (formData: FormData) => {
             "use server"
-            await signIn("nodemailer", formData)
+            await signIn("resend", formData)
           }}
         >
           <input type="hidden" name="redirectTo" value={callbackUrl ?? "/"} />

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { churchDenominationEditSchema } from "@/lib/validations"
-import { jsonError, ApiError, requireAdmin } from "@/lib/api-utils"
+import { jsonError, ApiError, requireModerator } from "@/lib/api-utils"
 
 // A direct one-off correction, separate from the alias-driven matching in
 // lib/denomination-matching.ts. Use this when a specific church's own
@@ -9,7 +9,7 @@ import { jsonError, ApiError, requireAdmin } from "@/lib/api-utils"
 // e.g. tagged "Non-denominational" but it actually names an affiliation.
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    await requireAdmin()
+    await requireModerator()
     const { id } = await params
 
     const church = await prisma.church.findUnique({ where: { id }, select: { id: true } })

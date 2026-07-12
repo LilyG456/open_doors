@@ -4,7 +4,10 @@ import { prisma } from "@/lib/prisma"
 import { formatRelativeTime } from "@/lib/aggregation"
 
 // New stories get approved continuously, so don't freeze this at build time.
-export const revalidate = 60
+// Not ISR (revalidate) — see app/page.tsx's comment on why that still
+// queries the DB from the build environment, which platforms like Railway
+// can't reach.
+export const dynamic = "force-dynamic"
 
 export const metadata = {
   title: "Stories · Open Doors",

@@ -11,7 +11,7 @@ export const metadata = {
 export default async function ChurchEditQueuePage() {
   const session = await auth()
   if (!session?.user) redirect("/signin?callbackUrl=/admin/church-edit-queue")
-  if (session.user.role !== "ADMIN") redirect("/")
+  if (session.user.role !== "ADMIN" && session.user.role !== "MODERATOR") redirect("/")
 
   const [suggestions, allTags] = await Promise.all([
     prisma.churchEditSuggestion.findMany({
@@ -29,7 +29,7 @@ export default async function ChurchEditQueuePage() {
 
   return (
     <div className="mx-auto w-full max-w-4xl px-4 pb-16 pt-10 sm:px-6">
-      <AdminNav active="/admin/church-edit-queue" />
+      <AdminNav active="/admin/church-edit-queue" role={session.user.role} />
       <h1 className="font-serif text-2xl font-semibold text-foreground sm:text-3xl">Church Edit Queue</h1>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
         Community-submitted corrections to church facts — address, website, service times, tags — as distinct

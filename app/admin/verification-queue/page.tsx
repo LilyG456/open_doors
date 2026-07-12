@@ -11,7 +11,7 @@ export const metadata = {
 export default async function VerificationQueuePage() {
   const session = await auth()
   if (!session?.user) redirect("/signin?callbackUrl=/admin/verification-queue")
-  if (session.user.role !== "ADMIN") redirect("/")
+  if (session.user.role !== "ADMIN" && session.user.role !== "MODERATOR") redirect("/")
 
   const suggestions = await prisma.denominationSuggestion.findMany({
     where: { status: "PENDING" },
@@ -24,7 +24,7 @@ export default async function VerificationQueuePage() {
 
   return (
     <div className="mx-auto w-full max-w-4xl px-4 pb-16 pt-10 sm:px-6">
-      <AdminNav active="/admin/verification-queue" />
+      <AdminNav active="/admin/verification-queue" role={session.user.role} />
       <h1 className="font-serif text-2xl font-semibold text-foreground sm:text-3xl">Verification Queue</h1>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
         Candidate denomination matches found by scanning church websites for affiliation language — never applied

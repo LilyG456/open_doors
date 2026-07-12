@@ -206,3 +206,64 @@ export const churchEditSuggestionSchema = z
       ),
     { message: "Suggest at least one change." },
   )
+
+// ---------- Multi-source data pipeline (admin) ----------
+
+// Deliberately excludes OSM (only scripts/import-osm-churches.ts writes
+// those) and USER_SUBMITTED (only the public suggest-edit flow, via
+// ChurchEditSuggestion, produces those).
+export const manualChurchSourceTypeValues = [
+  "SHEPHERDS_STREAM",
+  "DENOMINATION_DIRECTORY",
+  "CHURCH_WEBSITE",
+  "ADMIN",
+] as const
+
+export const sourceConfidenceValues = ["UNVERIFIED", "LOW", "MEDIUM", "HIGH"] as const
+
+export const churchSourceEntrySchema = z.object({
+  sourceType: z.enum(manualChurchSourceTypeValues),
+  confidence: z.enum(sourceConfidenceValues),
+  // The listing URL, or any other stable identifier for this specific
+  // record on the source — required so re-entering the same listing later
+  // updates it instead of creating a duplicate ChurchSource.
+  externalId: z.string().trim().min(1).max(500),
+  name: z.string().trim().min(1).max(300),
+  address: z.string().trim().max(300).nullable().optional(),
+  city: z.string().trim().max(200).nullable().optional(),
+  state: z.string().trim().max(10).nullable().optional(),
+  zip: z.string().trim().max(20).nullable().optional(),
+  website: z.string().trim().url().max(500).nullable().optional().or(z.literal("").transform(() => null)),
+  phone: z.string().trim().max(30).nullable().optional(),
+  serviceTimes: z.array(z.string().trim().min(1).max(60)).max(20).default([]),
+  denomination: z.string().trim().max(200).nullable().optional(),
+  worshipStyleRaw: z.string().trim().max(200).nullable().optional(),
+  ministryTagsRaw: z.array(z.string().trim().min(1).max(100)).max(20).default([]),
+})
+
+// Same as above, but for a listing that isn't attached to a known church yet
+// (the admin isn't sure if it's new or a duplicate) — requires lat/lng since
+// those drive lib/church-matching.ts's geo score, and without them
+// lib/church-merge.ts can't search for nearby candidates at all.
+export const churchSourceUntargetedSchema = churchSourceEntrySchema.extend({
+  lat: z.number().min(-90).max(90),
+  lng: z.number().min(-180).max(180),
+})
+
+// ---------- Church deletion requests (moderator-initiated) ----------
+
+export const churchDeletionRequestSchema = z.object({
+  reason: z.string().trim().min(10, "Say a bit more about why this should be deleted.").max(1000),
+})
+
+export const deletionRequestDecisionSchema = z.object({
+  decision: z.enum(["APPROVE", "DISMISS"]),
+})
+
+// ---------- User role management (admin-only) ----------
+
+export const userRoleValues = ["USER", "MODERATOR", "ADMIN"] as const
+
+export const userRoleUpdateSchema = z.object({
+  role: z.enum(userRoleValues),
+})

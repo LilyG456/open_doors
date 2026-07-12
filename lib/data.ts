@@ -78,7 +78,7 @@ export const filterGroups: { title: string; options: string[] }[] = [
   },
   {
     title: "Community",
-    options: ["College Students", "Young Adults", "Families", "Singles", "Seniors"],
+    options: ["College Students", "Young Adults", "Families", "Singles", "Seniors", "Kids Ministry", "Youth Ministry"],
   },
   {
     title: "Mental Health",

@@ -6,11 +6,22 @@ import { ChurchVerificationForm } from "@/components/admin/church-verification-f
 import { ChurchDenominationForm } from "@/components/admin/church-denomination-form"
 import { ChurchFactsForm, type ChurchFactsFormValues } from "@/components/admin/church-facts-form"
 import { ChurchDeleteSection } from "@/components/admin/church-delete-section"
+import { ChurchDeletionRequestForm } from "@/components/admin/church-deletion-request-form"
+import { PendingDeletionBanner } from "@/components/admin/pending-deletion-banner"
+import { ChurchSourceForm } from "@/components/admin/church-source-form"
+import { ChurchSourcesList } from "@/components/admin/church-sources-list"
 
 const churchInclude = {
   verification: true,
   denominationRef: { select: { id: true, name: true } },
   _count: { select: { experiences: true, savedBy: true, tags: true } },
+  sources: { orderBy: { fetchedAt: "desc" as const } },
+  fieldSources: { orderBy: { field: "asc" as const } },
+  deletionRequests: {
+    where: { status: "PENDING" as const },
+    include: { requestedBy: { select: { displayName: true } } },
+    take: 1,
+  },
 } as const
 
 // See app/church/[slug]/page.tsx for why this falls back to previousSlugs.
@@ -33,7 +44,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function ManageChurchPage({ params }: { params: Promise<{ slug: string }> }) {
   const session = await auth()
   if (!session?.user) redirect(`/signin?callbackUrl=/admin/churches`)
-  if (session.user.role !== "ADMIN") redirect("/")
+  if (session.user.role !== "ADMIN" && session.user.role !== "MODERATOR") redirect("/")
+  const isAdmin = session.user.role === "ADMIN"
 
   const { slug } = await params
   const [{ record: church, redirectTo }, denominations] = await Promise.all([
@@ -104,15 +116,52 @@ export default async function ManageChurchPage({ params }: { params: Promise<{ s
           </p>
         )}
 
-        <ChurchDeleteSection
-          churchId={church.id}
-          churchName={church.name}
-          counts={{
-            experiences: church._count.experiences,
-            savedBy: church._count.savedBy,
-            tags: church._count.tags,
-          }}
+        <ChurchSourceForm mode="targeted" churchId={church.id} churchName={church.name} />
+
+        <ChurchSourcesList
+          sources={church.sources.map((s) => ({
+            id: s.id,
+            sourceType: s.sourceType,
+            confidence: s.confidence,
+            externalId: s.externalId,
+            fetchedAt: s.fetchedAt.toISOString(),
+          }))}
+          fieldSources={church.fieldSources.map((f) => ({
+            field: f.field,
+            sourceType: f.sourceType,
+            confidence: f.confidence,
+            setAt: f.setAt.toISOString(),
+          }))}
         />
+
+        {church.deletionRequests[0] && (
+          <PendingDeletionBanner
+            requestId={church.deletionRequests[0].id}
+            reason={church.deletionRequests[0].reason}
+            requestedByName={church.deletionRequests[0].requestedBy?.displayName ?? null}
+            canDismiss={isAdmin}
+          />
+        )}
+
+        {isAdmin ? (
+          <ChurchDeleteSection
+            churchId={church.id}
+            churchName={church.name}
+            counts={{
+              experiences: church._count.experiences,
+              savedBy: church._count.savedBy,
+              tags: church._count.tags,
+            }}
+          />
+        ) : (
+          !church.deletionRequests[0] && (
+            <ChurchDeletionRequestForm
+              churchId={church.id}
+              churchName={church.name}
+              counts={{ experiences: church._count.experiences, savedBy: church._count.savedBy }}
+            />
+          )
+        )}
       </div>
     </div>
   )

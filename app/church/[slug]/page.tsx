@@ -11,6 +11,7 @@ import { TheologyCard } from "@/components/church/theology-card"
 import { TransparencySection } from "@/components/church/transparency-section"
 import { VisitorStories } from "@/components/church/visitor-stories"
 import { DenominationalContextCard } from "@/components/church/denominational-context"
+import { DataSourcesPanel } from "@/components/church/data-sources-panel"
 import { ArrowLeft } from "lucide-react"
 
 const MEMBER_STATUS_LABEL: Record<string, Story["status"]> = {
@@ -98,6 +99,10 @@ export default async function ChurchPage({
 
   const church = toChurchDetail(churchRecord as unknown as ChurchWithRelations)
   const stories = await getStories(churchRecord.id, session?.user?.id)
+  const fieldSources = await prisma.churchFieldSource.findMany({
+    where: { churchId: churchRecord.id },
+    select: { field: true, sourceType: true, confidence: true },
+  })
 
   const initiallySaved = session?.user
     ? Boolean(
@@ -131,6 +136,7 @@ export default async function ChurchPage({
           <div className="flex flex-col gap-6 lg:col-span-2">
             <TheologyCard church={church} />
             <TransparencySection church={church} />
+            <DataSourcesPanel fieldSources={fieldSources} />
           </div>
         </div>
     </div>

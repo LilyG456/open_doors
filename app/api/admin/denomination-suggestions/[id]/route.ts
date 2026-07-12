@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { suggestionDecisionSchema } from "@/lib/validations"
-import { jsonError, ApiError, requireAdmin } from "@/lib/api-utils"
+import { jsonError, ApiError, requireModerator } from "@/lib/api-utils"
 
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const admin = await requireAdmin()
+    const admin = await requireModerator()
     const { id } = await params
 
     const body = await req.json()

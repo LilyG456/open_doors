@@ -42,7 +42,7 @@ export default async function AdminDenominationsPage() {
 
   return (
     <div className="mx-auto w-full max-w-4xl px-4 pb-16 pt-10 sm:px-6">
-      <AdminNav active="/admin/denominations" />
+      <AdminNav active="/admin/denominations" role={session.user.role} />
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="font-serif text-2xl font-semibold text-foreground sm:text-3xl">Denominations</h1>

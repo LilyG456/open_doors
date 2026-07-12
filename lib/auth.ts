@@ -1,6 +1,6 @@
 import NextAuth from "next-auth"
 import type { NextAuthConfig } from "next-auth"
-import Nodemailer from "next-auth/providers/nodemailer"
+import Resend from "next-auth/providers/resend"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import { prisma } from "@/lib/prisma"
 
@@ -10,18 +10,21 @@ import { prisma } from "@/lib/prisma"
 const config: NextAuthConfig = {
   adapter: PrismaAdapter(prisma),
   session: { strategy: "database" },
+  // Auth.js only auto-trusts the Host header on a handful of platforms it
+  // recognizes (Vercel, etc.) — Railway isn't one of them, so without this
+  // every request behind Railway's edge proxy gets rejected as an
+  // UntrustedHost. Railway's proxy is the only way to reach this app (it's
+  // not otherwise exposed to the internet), so trusting its forwarded Host
+  // header here is safe.
+  trustHost: true,
   providers: [
-    Nodemailer({
-      server: {
-        host: process.env.EMAIL_SERVER_HOST,
-        port: Number(process.env.EMAIL_SERVER_PORT ?? 587),
-        auth: process.env.EMAIL_SERVER_USER
-          ? {
-              user: process.env.EMAIL_SERVER_USER,
-              pass: process.env.EMAIL_SERVER_PASSWORD,
-            }
-          : undefined,
-      },
+    // Sends via Resend's HTTPS API rather than raw SMTP. Railway's network
+    // silently drops outbound SMTP (port 587) connections to smtp.resend.com
+    // — every send hung for ~2 minutes before timing out, making the
+    // "Send magic link" button look completely dead. The API call goes out
+    // over 443 like any other fetch, so it isn't affected.
+    Resend({
+      apiKey: process.env.RESEND_API_KEY,
       from: process.env.EMAIL_FROM,
     }),
   ],

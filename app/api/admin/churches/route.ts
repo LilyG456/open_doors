@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { churchCreateSchema } from "@/lib/validations"
-import { jsonError, ApiError, requireAdmin } from "@/lib/api-utils"
+import { jsonError, ApiError, requireModerator } from "@/lib/api-utils"
 
 export async function POST(req: NextRequest) {
   try {
-    await requireAdmin()
+    await requireModerator()
 
     const body = await req.json()
     const parsed = churchCreateSchema.safeParse(body)

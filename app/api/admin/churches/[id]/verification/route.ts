@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
 import { churchVerificationSchema } from "@/lib/validations"
-import { jsonError, ApiError, requireAdmin } from "@/lib/api-utils"
+import { jsonError, ApiError, requireModerator } from "@/lib/api-utils"
 
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const admin = await requireAdmin()
+    const admin = await requireModerator()
     const { id } = await params
 
     const church = await prisma.church.findUnique({ where: { id }, select: { id: true } })
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
 
 export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    await requireAdmin()
+    await requireModerator()
     const { id } = await params
 
     await prisma.churchVerification.deleteMany({ where: { churchId: id } })

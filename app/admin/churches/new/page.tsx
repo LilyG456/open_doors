@@ -11,7 +11,7 @@ export const metadata = {
 export default async function NewChurchPage() {
   const session = await auth()
   if (!session?.user) redirect("/signin?callbackUrl=/admin/churches/new")
-  if (session.user.role !== "ADMIN") redirect("/")
+  if (session.user.role !== "ADMIN" && session.user.role !== "MODERATOR") redirect("/")
 
   const denominations = await prisma.denomination.findMany({
     select: { id: true, name: true },
@@ -20,7 +20,7 @@ export default async function NewChurchPage() {
 
   return (
     <div className="mx-auto w-full max-w-2xl px-4 pb-16 pt-10 sm:px-6">
-      <AdminNav active="" />
+      <AdminNav active="" role={session.user.role} />
       <ChurchFactsForm mode="create" initial={EMPTY_CHURCH_FACTS} denominations={denominations} />
     </div>
   )

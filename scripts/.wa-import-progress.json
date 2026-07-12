@@ -1,0 +1,3110 @@
+{
+  "aberdeen": {
+    "importedAt": "2026-07-08T18:28:01.857Z",
+    "stats": {
+      "scraped": 32,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 5,
+      "noMatch": 27,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "acme": {
+    "importedAt": "2026-07-08T18:28:07.575Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "addy": {
+    "importedAt": "2026-07-08T18:28:18.481Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "airway-heights": {
+    "importedAt": "2026-07-08T18:28:33.993Z",
+    "stats": {
+      "scraped": 6,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 6,
+      "geocodeFailed": 5,
+      "alreadyLinked": 0
+    }
+  },
+  "algona": {
+    "importedAt": "2026-07-08T18:28:40.343Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "allyn": {
+    "importedAt": "2026-07-08T18:28:46.999Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "amboy": {
+    "importedAt": "2026-07-08T18:28:53.746Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "anacortes": {
+    "importedAt": "2026-07-08T18:29:30.999Z",
+    "stats": {
+      "scraped": 20,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 6,
+      "noMatch": 14,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "anderson-island": {
+    "importedAt": "2026-07-08T18:29:37.127Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "ariel": {
+    "importedAt": "2026-07-08T18:29:41.827Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "arlington": {
+    "importedAt": "2026-07-08T18:30:37.072Z",
+    "stats": {
+      "scraped": 22,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 21,
+      "geocodeFailed": 14,
+      "alreadyLinked": 0
+    }
+  },
+  "ashford": {
+    "importedAt": "2026-07-08T18:30:43.289Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "asotin": {
+    "importedAt": "2026-07-08T18:30:53.809Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "auburn": {
+    "importedAt": "2026-07-08T18:33:43.309Z",
+    "stats": {
+      "scraped": 48,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 48,
+      "geocodeFailed": 48,
+      "alreadyLinked": 0
+    }
+  },
+  "bainbridge-island": {
+    "importedAt": "2026-07-08T18:34:09.539Z",
+    "stats": {
+      "scraped": 8,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 8,
+      "geocodeFailed": 8,
+      "alreadyLinked": 0
+    }
+  },
+  "battle-ground": {
+    "importedAt": "2026-07-08T18:35:28.156Z",
+    "stats": {
+      "scraped": 24,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 24,
+      "geocodeFailed": 24,
+      "alreadyLinked": 0
+    }
+  },
+  "belfair": {
+    "importedAt": "2026-07-08T18:36:05.916Z",
+    "stats": {
+      "scraped": 12,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 12,
+      "geocodeFailed": 12,
+      "alreadyLinked": 0
+    }
+  },
+  "bellevue": {
+    "importedAt": "2026-07-08T18:37:11.527Z",
+    "stats": {
+      "scraped": 20,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 20,
+      "geocodeFailed": 20,
+      "alreadyLinked": 0
+    }
+  },
+  "bellingham": {
+    "importedAt": "2026-07-08T18:38:14.646Z",
+    "stats": {
+      "scraped": 20,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 20,
+      "geocodeFailed": 20,
+      "alreadyLinked": 0
+    }
+  },
+  "benton-city": {
+    "importedAt": "2026-07-08T18:38:29.069Z",
+    "stats": {
+      "scraped": 4,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 4,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "bingen": {
+    "importedAt": "2026-07-08T18:38:41.773Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 3,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "black-diamond": {
+    "importedAt": "2026-07-08T18:38:51.815Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "blaine": {
+    "importedAt": "2026-07-08T18:39:24.897Z",
+    "stats": {
+      "scraped": 10,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 10,
+      "geocodeFailed": 10,
+      "alreadyLinked": 0
+    }
+  },
+  "bonney-lake": {
+    "importedAt": "2026-07-08T18:40:12.393Z",
+    "stats": {
+      "scraped": 14,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 14,
+      "geocodeFailed": 14,
+      "alreadyLinked": 0
+    }
+  },
+  "bothell": {
+    "importedAt": "2026-07-08T18:41:59.997Z",
+    "stats": {
+      "scraped": 35,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 35,
+      "geocodeFailed": 35,
+      "alreadyLinked": 0
+    }
+  },
+  "bow": {
+    "importedAt": "2026-07-08T18:42:08.115Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "bremerton": {
+    "importedAt": "2026-07-08T18:45:22.868Z",
+    "stats": {
+      "scraped": 60,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 60,
+      "geocodeFailed": 54,
+      "alreadyLinked": 0
+    }
+  },
+  "brewster": {
+    "importedAt": "2026-07-08T18:45:31.898Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 3,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "bridgeport": {
+    "importedAt": "2026-07-08T18:45:37.308Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "brier": {
+    "importedAt": "2026-07-08T18:45:44.574Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "brinnon": {
+    "importedAt": "2026-07-09T02:40:21.161Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "brush-prairie": {
+    "importedAt": "2026-07-09T02:40:36.821Z",
+    "stats": {
+      "scraped": 6,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 6,
+      "geocodeFailed": 6,
+      "alreadyLinked": 0
+    }
+  },
+  "buckley": {
+    "importedAt": "2026-07-09T02:40:45.550Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 3,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "burbank": {
+    "importedAt": "2026-07-09T02:40:52.608Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "burien": {
+    "importedAt": "2026-07-09T02:41:41.463Z",
+    "stats": {
+      "scraped": 26,
+      "created": 0,
+      "autoMatched": 2,
+      "sentToReview": 4,
+      "noMatch": 20,
+      "geocodeFailed": 16,
+      "alreadyLinked": 0
+    }
+  },
+  "burlington": {
+    "importedAt": "2026-07-09T02:42:22.434Z",
+    "stats": {
+      "scraped": 21,
+      "created": 1,
+      "autoMatched": 1,
+      "sentToReview": 7,
+      "noMatch": 13,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "camano-island": {
+    "importedAt": "2026-07-09T02:42:40.238Z",
+    "stats": {
+      "scraped": 7,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 0,
+      "noMatch": 6,
+      "geocodeFailed": 5,
+      "alreadyLinked": 0
+    }
+  },
+  "camas": {
+    "importedAt": "2026-07-09T02:43:24.900Z",
+    "stats": {
+      "scraped": 23,
+      "created": 1,
+      "autoMatched": 2,
+      "sentToReview": 16,
+      "noMatch": 5,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "carnation": {
+    "importedAt": "2026-07-09T02:43:30.821Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "carson": {
+    "importedAt": "2026-07-09T02:43:37.679Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 0,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "cashmere": {
+    "importedAt": "2026-07-09T02:44:04.576Z",
+    "stats": {
+      "scraped": 12,
+      "created": 0,
+      "autoMatched": 2,
+      "sentToReview": 4,
+      "noMatch": 6,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "castle-rock": {
+    "importedAt": "2026-07-09T02:44:26.890Z",
+    "stats": {
+      "scraped": 9,
+      "created": 0,
+      "autoMatched": 2,
+      "sentToReview": 6,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "cathlamet": {
+    "importedAt": "2026-07-09T02:44:43.173Z",
+    "stats": {
+      "scraped": 5,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 4,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "centralia": {
+    "importedAt": "2026-07-09T02:45:25.703Z",
+    "stats": {
+      "scraped": 20,
+      "created": 0,
+      "autoMatched": 3,
+      "sentToReview": 11,
+      "noMatch": 6,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "chattaroy": {
+    "importedAt": "2026-07-09T02:45:32.529Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "chehalis": {
+    "importedAt": "2026-07-09T02:46:18.808Z",
+    "stats": {
+      "scraped": 23,
+      "created": 0,
+      "autoMatched": 3,
+      "sentToReview": 12,
+      "noMatch": 8,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "chelan": {
+    "importedAt": "2026-07-09T02:46:41.316Z",
+    "stats": {
+      "scraped": 9,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 6,
+      "noMatch": 2,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "cheney": {
+    "importedAt": "2026-07-09T02:47:18.643Z",
+    "stats": {
+      "scraped": 14,
+      "created": 0,
+      "autoMatched": 7,
+      "sentToReview": 6,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "chewelah": {
+    "importedAt": "2026-07-09T02:47:35.992Z",
+    "stats": {
+      "scraped": 6,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 3,
+      "noMatch": 3,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "clarkston": {
+    "importedAt": "2026-07-09T02:48:38.464Z",
+    "stats": {
+      "scraped": 23,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 10,
+      "noMatch": 13,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "cle-elum": {
+    "importedAt": "2026-07-09T02:48:56.840Z",
+    "stats": {
+      "scraped": 7,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 3,
+      "noMatch": 4,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "clinton": {
+    "importedAt": "2026-07-09T02:49:09.644Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "clyde-hill": {
+    "importedAt": "2026-07-09T02:49:17.189Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "colbert": {
+    "importedAt": "2026-07-09T02:49:32.355Z",
+    "stats": {
+      "scraped": 5,
+      "created": 0,
+      "autoMatched": 2,
+      "sentToReview": 1,
+      "noMatch": 2,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "colfax": {
+    "importedAt": "2026-07-09T02:49:49.196Z",
+    "stats": {
+      "scraped": 7,
+      "created": 0,
+      "autoMatched": 4,
+      "sentToReview": 1,
+      "noMatch": 2,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "college-place": {
+    "importedAt": "2026-07-09T02:50:06.662Z",
+    "stats": {
+      "scraped": 5,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 2,
+      "noMatch": 3,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "colville": {
+    "importedAt": "2026-07-09T02:51:03.725Z",
+    "stats": {
+      "scraped": 23,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 11,
+      "noMatch": 12,
+      "geocodeFailed": 6,
+      "alreadyLinked": 0
+    }
+  },
+  "concrete": {
+    "importedAt": "2026-07-09T02:51:18.688Z",
+    "stats": {
+      "scraped": 4,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 3,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "copalis-beach": {
+    "importedAt": "2026-07-09T02:51:24.350Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "cosmopolis": {
+    "importedAt": "2026-07-09T02:51:34.284Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "coulee-dam": {
+    "importedAt": "2026-07-09T03:42:22.851Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "coupeville": {
+    "importedAt": "2026-07-09T03:42:46.423Z",
+    "stats": {
+      "scraped": 5,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 2,
+      "noMatch": 2,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "covington": {
+    "importedAt": "2026-07-09T03:43:40.189Z",
+    "stats": {
+      "scraped": 16,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 16,
+      "geocodeFailed": 16,
+      "alreadyLinked": 0
+    }
+  },
+  "cowiche": {
+    "importedAt": "2026-07-09T03:43:44.944Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "curtis": {
+    "importedAt": "2026-07-09T03:43:59.115Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "custer": {
+    "importedAt": "2026-07-09T03:44:06.518Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "darrington": {
+    "importedAt": "2026-07-09T03:44:20.666Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "davenport": {
+    "importedAt": "2026-07-09T03:44:32.756Z",
+    "stats": {
+      "scraped": 5,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 3,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "dayton": {
+    "importedAt": "2026-07-09T03:45:26.247Z",
+    "stats": {
+      "scraped": 11,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 8,
+      "noMatch": 2,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "deer-park": {
+    "importedAt": "2026-07-09T03:46:10.235Z",
+    "stats": {
+      "scraped": 10,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 9,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "deming": {
+    "importedAt": "2026-07-09T03:46:21.438Z",
+    "stats": {
+      "scraped": 4,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 4,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "des-moines": {
+    "importedAt": "2026-07-09T03:47:22.366Z",
+    "stats": {
+      "scraped": 19,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 2,
+      "noMatch": 17,
+      "geocodeFailed": 11,
+      "alreadyLinked": 0
+    }
+  },
+  "desert-aire": {
+    "importedAt": "2026-07-09T03:47:29.458Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "dryden": {
+    "importedAt": "2026-07-09T03:47:35.841Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "dupont": {
+    "importedAt": "2026-07-09T03:47:51.963Z",
+    "stats": {
+      "scraped": 4,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 4,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "duvall": {
+    "importedAt": "2026-07-09T03:48:10.985Z",
+    "stats": {
+      "scraped": 7,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 7,
+      "geocodeFailed": 7,
+      "alreadyLinked": 0
+    }
+  },
+  "east-wenatchee": {
+    "importedAt": "2026-07-09T03:49:27.245Z",
+    "stats": {
+      "scraped": 25,
+      "created": 0,
+      "autoMatched": 3,
+      "sentToReview": 12,
+      "noMatch": 10,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "easton": {
+    "importedAt": "2026-07-09T03:49:34.439Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "eastsound": {
+    "importedAt": "2026-07-09T03:49:46.197Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "eatonville": {
+    "importedAt": "2026-07-09T03:50:04.955Z",
+    "stats": {
+      "scraped": 8,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 8,
+      "geocodeFailed": 5,
+      "alreadyLinked": 0
+    }
+  },
+  "edgewood": {
+    "importedAt": "2026-07-09T03:50:18.575Z",
+    "stats": {
+      "scraped": 4,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 1,
+      "noMatch": 2,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "edmonds": {
+    "importedAt": "2026-07-09T03:52:12.362Z",
+    "stats": {
+      "scraped": 39,
+      "created": 0,
+      "autoMatched": 3,
+      "sentToReview": 11,
+      "noMatch": 25,
+      "geocodeFailed": 15,
+      "alreadyLinked": 0
+    }
+  },
+  "elk": {
+    "importedAt": "2026-07-09T03:52:20.104Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "ellensburg": {
+    "importedAt": "2026-07-09T03:53:07.586Z",
+    "stats": {
+      "scraped": 24,
+      "created": 0,
+      "autoMatched": 6,
+      "sentToReview": 7,
+      "noMatch": 11,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "elma": {
+    "importedAt": "2026-07-09T03:53:27.403Z",
+    "stats": {
+      "scraped": 8,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 6,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "eltopia": {
+    "importedAt": "2026-07-09T03:53:32.710Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "entiat": {
+    "importedAt": "2026-07-09T03:53:38.701Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "enumclaw": {
+    "importedAt": "2026-07-09T03:54:13.474Z",
+    "stats": {
+      "scraped": 19,
+      "created": 0,
+      "autoMatched": 5,
+      "sentToReview": 3,
+      "noMatch": 11,
+      "geocodeFailed": 8,
+      "alreadyLinked": 0
+    }
+  },
+  "ephrata": {
+    "importedAt": "2026-07-09T03:54:47.383Z",
+    "stats": {
+      "scraped": 15,
+      "created": 1,
+      "autoMatched": 1,
+      "sentToReview": 9,
+      "noMatch": 5,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "evans": {
+    "importedAt": "2026-07-09T03:54:52.772Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "everett": {
+    "importedAt": "2026-07-09T04:05:46.577Z",
+    "stats": {
+      "scraped": 20,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 14,
+      "noMatch": 3,
+      "geocodeFailed": 2,
+      "alreadyLinked": 3
+    }
+  },
+  "everson": {
+    "importedAt": "2026-07-09T04:06:08.966Z",
+    "stats": {
+      "scraped": 12,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 4,
+      "noMatch": 8,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "fairfield": {
+    "importedAt": "2026-07-09T04:06:15.106Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "fall-city": {
+    "importedAt": "2026-07-09T04:06:23.648Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 3,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "federal-way": {
+    "importedAt": "2026-07-09T04:07:06.059Z",
+    "stats": {
+      "scraped": 20,
+      "created": 0,
+      "autoMatched": 4,
+      "sentToReview": 5,
+      "noMatch": 11,
+      "geocodeFailed": 9,
+      "alreadyLinked": 0
+    }
+  },
+  "ferndale": {
+    "importedAt": "2026-07-09T04:07:41.735Z",
+    "stats": {
+      "scraped": 16,
+      "created": 0,
+      "autoMatched": 2,
+      "sentToReview": 6,
+      "noMatch": 8,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "fife": {
+    "importedAt": "2026-07-09T04:07:56.482Z",
+    "stats": {
+      "scraped": 5,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 5,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "fircrest": {
+    "importedAt": "2026-07-09T04:08:10.180Z",
+    "stats": {
+      "scraped": 6,
+      "created": 0,
+      "autoMatched": 3,
+      "sentToReview": 2,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "forks": {
+    "importedAt": "2026-07-09T04:08:27.188Z",
+    "stats": {
+      "scraped": 7,
+      "created": 0,
+      "autoMatched": 3,
+      "sentToReview": 3,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "fox-island": {
+    "importedAt": "2026-07-09T04:08:32.933Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "freeland": {
+    "importedAt": "2026-07-09T04:08:39.395Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "friday-harbor": {
+    "importedAt": "2026-07-09T04:09:01.233Z",
+    "stats": {
+      "scraped": 11,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 3,
+      "noMatch": 8,
+      "geocodeFailed": 5,
+      "alreadyLinked": 0
+    }
+  },
+  "fruitland": {
+    "importedAt": "2026-07-09T04:09:06.096Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "george": {
+    "importedAt": "2026-07-09T04:09:11.832Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "gig-harbor": {
+    "importedAt": "2026-07-09T04:09:52.598Z",
+    "stats": {
+      "scraped": 20,
+      "created": 0,
+      "autoMatched": 4,
+      "sentToReview": 4,
+      "noMatch": 12,
+      "geocodeFailed": 7,
+      "alreadyLinked": 0
+    }
+  },
+  "glenwood": {
+    "importedAt": "2026-07-09T04:09:57.816Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "gold-bar": {
+    "importedAt": "2026-07-09T04:10:02.704Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "goldendale": {
+    "importedAt": "2026-07-09T04:10:27.668Z",
+    "stats": {
+      "scraped": 11,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 2,
+      "noMatch": 9,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "graham": {
+    "importedAt": "2026-07-09T04:10:58.443Z",
+    "stats": {
+      "scraped": 16,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 16,
+      "geocodeFailed": 13,
+      "alreadyLinked": 0
+    }
+  },
+  "grand-coulee": {
+    "importedAt": "2026-07-09T04:11:14.333Z",
+    "stats": {
+      "scraped": 7,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 2,
+      "noMatch": 5,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "grandview": {
+    "importedAt": "2026-07-09T04:11:54.827Z",
+    "stats": {
+      "scraped": 21,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 16,
+      "noMatch": 5,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "granger": {
+    "importedAt": "2026-07-09T04:12:04.287Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 2,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "granite-falls": {
+    "importedAt": "2026-07-09T04:12:20.682Z",
+    "stats": {
+      "scraped": 8,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 2,
+      "noMatch": 6,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "grapeview": {
+    "importedAt": "2026-07-09T04:12:25.156Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "grayland": {
+    "importedAt": "2026-07-09T04:12:31.687Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "greenbank": {
+    "importedAt": "2026-07-09T04:12:40.997Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "harrah": {
+    "importedAt": "2026-07-09T04:12:52.592Z",
+    "stats": {
+      "scraped": 5,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 4,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "harrington": {
+    "importedAt": "2026-07-09T04:13:00.550Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "hartline": {
+    "importedAt": "2026-07-09T04:13:06.107Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "hoodsport": {
+    "importedAt": "2026-07-09T04:13:10.387Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "hoquiam": {
+    "importedAt": "2026-07-09T04:14:12.718Z",
+    "stats": {
+      "scraped": 11,
+      "created": 0,
+      "autoMatched": 2,
+      "sentToReview": 4,
+      "noMatch": 5,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "hunters": {
+    "importedAt": "2026-07-09T04:14:20.150Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "ilwaco": {
+    "importedAt": "2026-07-09T04:14:27.126Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "inchelium": {
+    "importedAt": "2026-07-09T04:14:34.591Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "ione": {
+    "importedAt": "2026-07-09T04:14:39.659Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "issaquah": {
+    "importedAt": "2026-07-09T04:15:27.177Z",
+    "stats": {
+      "scraped": 24,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 5,
+      "noMatch": 18,
+      "geocodeFailed": 13,
+      "alreadyLinked": 0
+    }
+  },
+  "joint-base-lewis-mcchord": {
+    "importedAt": "2026-07-09T04:15:34.931Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "kalama": {
+    "importedAt": "2026-07-09T04:15:43.934Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "kelso": {
+    "importedAt": "2026-07-09T04:16:34.205Z",
+    "stats": {
+      "scraped": 26,
+      "created": 1,
+      "autoMatched": 3,
+      "sentToReview": 14,
+      "noMatch": 9,
+      "geocodeFailed": 6,
+      "alreadyLinked": 0
+    }
+  },
+  "kenmore": {
+    "importedAt": "2026-07-09T04:17:00.938Z",
+    "stats": {
+      "scraped": 13,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 4,
+      "noMatch": 8,
+      "geocodeFailed": 5,
+      "alreadyLinked": 0
+    }
+  },
+  "kennewick": {
+    "importedAt": "2026-07-09T04:18:33.542Z",
+    "stats": {
+      "scraped": 43,
+      "created": 1,
+      "autoMatched": 10,
+      "sentToReview": 13,
+      "noMatch": 20,
+      "geocodeFailed": 5,
+      "alreadyLinked": 0
+    }
+  },
+  "kent": {
+    "importedAt": "2026-07-09T04:19:28.643Z",
+    "stats": {
+      "scraped": 30,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 4,
+      "noMatch": 24,
+      "geocodeFailed": 22,
+      "alreadyLinked": 2
+    }
+  },
+  "kettle-falls": {
+    "importedAt": "2026-07-09T04:19:33.625Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "kingston": {
+    "importedAt": "2026-07-09T04:19:45.616Z",
+    "stats": {
+      "scraped": 5,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 4,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "kirkland": {
+    "importedAt": "2026-07-09T04:20:28.223Z",
+    "stats": {
+      "scraped": 20,
+      "created": 0,
+      "autoMatched": 4,
+      "sentToReview": 4,
+      "noMatch": 12,
+      "geocodeFailed": 10,
+      "alreadyLinked": 0
+    }
+  },
+  "la-center": {
+    "importedAt": "2026-07-09T04:20:39.286Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "lacey": {
+    "importedAt": "2026-07-09T04:21:57.162Z",
+    "stats": {
+      "scraped": 37,
+      "created": 0,
+      "autoMatched": 16,
+      "sentToReview": 10,
+      "noMatch": 11,
+      "geocodeFailed": 5,
+      "alreadyLinked": 0
+    }
+  },
+  "lake-forest-park": {
+    "importedAt": "2026-07-09T04:22:04.634Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "lake-stevens": {
+    "importedAt": "2026-07-09T04:22:28.182Z",
+    "stats": {
+      "scraped": 11,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 4,
+      "noMatch": 7,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "lake-tapps": {
+    "importedAt": "2026-07-09T04:22:47.582Z",
+    "stats": {
+      "scraped": 7,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 7,
+      "geocodeFailed": 5,
+      "alreadyLinked": 0
+    }
+  },
+  "lakebay": {
+    "importedAt": "2026-07-09T04:22:54.483Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "lakewood": {
+    "importedAt": "2026-07-09T04:24:03.198Z",
+    "stats": {
+      "scraped": 35,
+      "created": 0,
+      "autoMatched": 5,
+      "sentToReview": 11,
+      "noMatch": 19,
+      "geocodeFailed": 14,
+      "alreadyLinked": 0
+    }
+  },
+  "langley": {
+    "importedAt": "2026-07-09T04:24:17.239Z",
+    "stats": {
+      "scraped": 4,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 3,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "leavenworth": {
+    "importedAt": "2026-07-09T04:24:41.733Z",
+    "stats": {
+      "scraped": 11,
+      "created": 0,
+      "autoMatched": 3,
+      "sentToReview": 1,
+      "noMatch": 7,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "lind": {
+    "importedAt": "2026-07-09T04:24:49.697Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "long-beach": {
+    "importedAt": "2026-07-09T04:24:58.690Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 3,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "longview": {
+    "importedAt": "2026-07-09T04:25:59.313Z",
+    "stats": {
+      "scraped": 30,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 19,
+      "noMatch": 10,
+      "geocodeFailed": 7,
+      "alreadyLinked": 0
+    }
+  },
+  "loomis": {
+    "importedAt": "2026-07-09T04:26:05.185Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "loon-lake": {
+    "importedAt": "2026-07-09T04:26:13.541Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 3,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "lyle": {
+    "importedAt": "2026-07-09T04:26:19.089Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "lynden": {
+    "importedAt": "2026-07-09T20:35:09.582Z",
+    "stats": {
+      "scraped": 25,
+      "created": 0,
+      "autoMatched": 4,
+      "sentToReview": 10,
+      "noMatch": 11,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "lynnwood": {
+    "importedAt": "2026-07-09T20:37:37.719Z",
+    "stats": {
+      "scraped": 60,
+      "created": 1,
+      "autoMatched": 4,
+      "sentToReview": 10,
+      "noMatch": 46,
+      "geocodeFailed": 36,
+      "alreadyLinked": 0
+    }
+  },
+  "mabton": {
+    "importedAt": "2026-07-09T20:37:45.119Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "maple-falls": {
+    "importedAt": "2026-07-09T20:37:56.310Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 2,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "maple-valley": {
+    "importedAt": "2026-07-09T20:38:31.599Z",
+    "stats": {
+      "scraped": 17,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 17,
+      "geocodeFailed": 17,
+      "alreadyLinked": 0
+    }
+  },
+  "marblemount": {
+    "importedAt": "2026-07-09T20:38:40.048Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "marysville": {
+    "importedAt": "2026-07-09T20:39:28.199Z",
+    "stats": {
+      "scraped": 20,
+      "created": 0,
+      "autoMatched": 6,
+      "sentToReview": 6,
+      "noMatch": 8,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "mattawa": {
+    "importedAt": "2026-07-09T20:39:37.521Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 3,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "mccleary": {
+    "importedAt": "2026-07-09T20:39:46.746Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "mead": {
+    "importedAt": "2026-07-09T20:40:00.412Z",
+    "stats": {
+      "scraped": 6,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 6,
+      "geocodeFailed": 5,
+      "alreadyLinked": 0
+    }
+  },
+  "medical-lake": {
+    "importedAt": "2026-07-09T20:40:12.231Z",
+    "stats": {
+      "scraped": 4,
+      "created": 0,
+      "autoMatched": 2,
+      "sentToReview": 2,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "medina": {
+    "importedAt": "2026-07-09T20:40:17.641Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "mercer-island": {
+    "importedAt": "2026-07-09T20:40:42.355Z",
+    "stats": {
+      "scraped": 11,
+      "created": 0,
+      "autoMatched": 3,
+      "sentToReview": 4,
+      "noMatch": 4,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "mesa": {
+    "importedAt": "2026-07-09T20:40:52.687Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 3,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "mill-creek": {
+    "importedAt": "2026-07-09T20:41:18.173Z",
+    "stats": {
+      "scraped": 12,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 0,
+      "noMatch": 11,
+      "geocodeFailed": 9,
+      "alreadyLinked": 0
+    }
+  },
+  "milton": {
+    "importedAt": "2026-07-09T20:41:38.756Z",
+    "stats": {
+      "scraped": 9,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 4,
+      "noMatch": 4,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "monroe": {
+    "importedAt": "2026-07-09T20:42:19.588Z",
+    "stats": {
+      "scraped": 20,
+      "created": 1,
+      "autoMatched": 2,
+      "sentToReview": 6,
+      "noMatch": 12,
+      "geocodeFailed": 7,
+      "alreadyLinked": 0
+    }
+  },
+  "montesano": {
+    "importedAt": "2026-07-09T20:42:40.829Z",
+    "stats": {
+      "scraped": 9,
+      "created": 0,
+      "autoMatched": 6,
+      "sentToReview": 2,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "morton": {
+    "importedAt": "2026-07-09T20:42:47.905Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "moses-lake": {
+    "importedAt": "2026-07-09T20:43:43.982Z",
+    "stats": {
+      "scraped": 30,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 15,
+      "noMatch": 15,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "mossyrock": {
+    "importedAt": "2026-07-09T20:43:51.293Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "mount-vernon": {
+    "importedAt": "2026-07-09T20:44:30.328Z",
+    "stats": {
+      "scraped": 20,
+      "created": 0,
+      "autoMatched": 3,
+      "sentToReview": 0,
+      "noMatch": 17,
+      "geocodeFailed": 16,
+      "alreadyLinked": 0
+    }
+  },
+  "mountlake-ter": {
+    "importedAt": "2026-07-09T20:44:41.226Z",
+    "stats": {
+      "scraped": 4,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 4,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "mountlake-terrace": {
+    "importedAt": "2026-07-09T20:45:22.578Z",
+    "stats": {
+      "scraped": 22,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 21,
+      "geocodeFailed": 20,
+      "alreadyLinked": 0
+    }
+  },
+  "moxee": {
+    "importedAt": "2026-07-09T20:45:32.226Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "mukilteo": {
+    "importedAt": "2026-07-09T20:45:51.972Z",
+    "stats": {
+      "scraped": 9,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 1,
+      "noMatch": 7,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "naches": {
+    "importedAt": "2026-07-09T20:46:04.228Z",
+    "stats": {
+      "scraped": 5,
+      "created": 1,
+      "autoMatched": 2,
+      "sentToReview": 1,
+      "noMatch": 2,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "napavine": {
+    "importedAt": "2026-07-09T20:46:09.389Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "naselle": {
+    "importedAt": "2026-07-09T20:46:15.916Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 0,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "newcastle": {
+    "importedAt": "2026-07-09T20:46:25.126Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 3,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "newman-lake": {
+    "importedAt": "2026-07-09T21:26:50.439Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "newport": {
+    "importedAt": "2026-07-09T21:27:17.406Z",
+    "stats": {
+      "scraped": 12,
+      "created": 1,
+      "autoMatched": 1,
+      "sentToReview": 3,
+      "noMatch": 8,
+      "geocodeFailed": 6,
+      "alreadyLinked": 0
+    }
+  },
+  "nine-mile-falls": {
+    "importedAt": "2026-07-09T21:27:27.297Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 3,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "nooksack": {
+    "importedAt": "2026-07-09T21:27:33.239Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "normandy-park": {
+    "importedAt": "2026-07-09T21:27:41.716Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "north-bend": {
+    "importedAt": "2026-07-09T21:27:58.624Z",
+    "stats": {
+      "scraped": 8,
+      "created": 1,
+      "autoMatched": 1,
+      "sentToReview": 1,
+      "noMatch": 6,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "oak-harbor": {
+    "importedAt": "2026-07-09T21:29:21.853Z",
+    "stats": {
+      "scraped": 30,
+      "created": 0,
+      "autoMatched": 5,
+      "sentToReview": 3,
+      "noMatch": 22,
+      "geocodeFailed": 12,
+      "alreadyLinked": 0
+    }
+  },
+  "ocean-park": {
+    "importedAt": "2026-07-09T21:29:30.326Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 3,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "ocean-shores": {
+    "importedAt": "2026-07-09T21:29:40.449Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 2,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "odessa": {
+    "importedAt": "2026-07-09T21:29:49.503Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "okanogan": {
+    "importedAt": "2026-07-09T21:29:59.367Z",
+    "stats": {
+      "scraped": 4,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 2,
+      "noMatch": 2,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "olalla": {
+    "importedAt": "2026-07-09T21:30:05.257Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "olympia": {
+    "importedAt": "2026-07-09T21:32:22.762Z",
+    "stats": {
+      "scraped": 60,
+      "created": 0,
+      "autoMatched": 10,
+      "sentToReview": 14,
+      "noMatch": 24,
+      "geocodeFailed": 14,
+      "alreadyLinked": 12
+    }
+  },
+  "omak": {
+    "importedAt": "2026-07-09T21:32:42.320Z",
+    "stats": {
+      "scraped": 8,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 7,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "onalaska": {
+    "importedAt": "2026-07-09T21:32:48.095Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "oroville": {
+    "importedAt": "2026-07-09T21:33:06.882Z",
+    "stats": {
+      "scraped": 9,
+      "created": 1,
+      "autoMatched": 1,
+      "sentToReview": 2,
+      "noMatch": 6,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "orting": {
+    "importedAt": "2026-07-09T21:33:15.724Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 3,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "othello": {
+    "importedAt": "2026-07-09T21:33:41.101Z",
+    "stats": {
+      "scraped": 12,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 8,
+      "noMatch": 4,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "otis-orchards": {
+    "importedAt": "2026-07-09T21:34:03.470Z",
+    "stats": {
+      "scraped": 9,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 2,
+      "noMatch": 7,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "pacific": {
+    "importedAt": "2026-07-09T21:34:15.707Z",
+    "stats": {
+      "scraped": 4,
+      "created": 0,
+      "autoMatched": 2,
+      "sentToReview": 1,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "palouse": {
+    "importedAt": "2026-07-09T21:34:20.925Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "pasco": {
+    "importedAt": "2026-07-09T21:35:36.836Z",
+    "stats": {
+      "scraped": 38,
+      "created": 0,
+      "autoMatched": 5,
+      "sentToReview": 13,
+      "noMatch": 20,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "peshastin": {
+    "importedAt": "2026-07-09T21:35:45.561Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 1,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "point-roberts": {
+    "importedAt": "2026-07-09T21:35:51.633Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 0,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "pomeroy": {
+    "importedAt": "2026-07-09T21:35:57.348Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "port-angeles": {
+    "importedAt": "2026-07-09T21:37:01.195Z",
+    "stats": {
+      "scraped": 29,
+      "created": 0,
+      "autoMatched": 2,
+      "sentToReview": 14,
+      "noMatch": 13,
+      "geocodeFailed": 8,
+      "alreadyLinked": 0
+    }
+  },
+  "port-hadlock": {
+    "importedAt": "2026-07-09T21:37:14.389Z",
+    "stats": {
+      "scraped": 5,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 5,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "port-ludlow": {
+    "importedAt": "2026-07-09T21:37:20.902Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "port-orchard": {
+    "importedAt": "2026-07-09T21:38:46.067Z",
+    "stats": {
+      "scraped": 40,
+      "created": 0,
+      "autoMatched": 4,
+      "sentToReview": 1,
+      "noMatch": 35,
+      "geocodeFailed": 18,
+      "alreadyLinked": 0
+    }
+  },
+  "port-townsend": {
+    "importedAt": "2026-07-09T21:39:17.134Z",
+    "stats": {
+      "scraped": 15,
+      "created": 0,
+      "autoMatched": 4,
+      "sentToReview": 5,
+      "noMatch": 6,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "poulsbo": {
+    "importedAt": "2026-07-09T22:23:10.527Z",
+    "stats": {
+      "scraped": 24,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 2,
+      "noMatch": 22,
+      "geocodeFailed": 20,
+      "alreadyLinked": 0
+    }
+  },
+  "prescott": {
+    "importedAt": "2026-07-09T22:23:18.237Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "preston": {
+    "importedAt": "2026-07-09T22:23:23.761Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "prosser": {
+    "importedAt": "2026-07-09T22:23:57.764Z",
+    "stats": {
+      "scraped": 16,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 9,
+      "noMatch": 7,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "pullman": {
+    "importedAt": "2026-07-09T22:24:48.622Z",
+    "stats": {
+      "scraped": 25,
+      "created": 0,
+      "autoMatched": 4,
+      "sentToReview": 10,
+      "noMatch": 11,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "puyallup": {
+    "importedAt": "2026-07-09T22:25:32.108Z",
+    "stats": {
+      "scraped": 20,
+      "created": 0,
+      "autoMatched": 4,
+      "sentToReview": 6,
+      "noMatch": 10,
+      "geocodeFailed": 10,
+      "alreadyLinked": 0
+    }
+  },
+  "quilcene": {
+    "importedAt": "2026-07-09T22:25:37.581Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "quincy": {
+    "importedAt": "2026-07-09T22:26:12.381Z",
+    "stats": {
+      "scraped": 16,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 10,
+      "noMatch": 6,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "rainier": {
+    "importedAt": "2026-07-09T22:26:19.252Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "randle": {
+    "importedAt": "2026-07-09T22:26:25.405Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "raymond": {
+    "importedAt": "2026-07-09T22:26:54.713Z",
+    "stats": {
+      "scraped": 14,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 8,
+      "noMatch": 6,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "redmond": {
+    "importedAt": "2026-07-09T22:27:35.509Z",
+    "stats": {
+      "scraped": 20,
+      "created": 1,
+      "autoMatched": 2,
+      "sentToReview": 1,
+      "noMatch": 17,
+      "geocodeFailed": 16,
+      "alreadyLinked": 0
+    }
+  },
+  "renton": {
+    "importedAt": "2026-07-09T22:28:58.290Z",
+    "stats": {
+      "scraped": 40,
+      "created": 1,
+      "autoMatched": 8,
+      "sentToReview": 7,
+      "noMatch": 22,
+      "geocodeFailed": 22,
+      "alreadyLinked": 3
+    }
+  },
+  "republic": {
+    "importedAt": "2026-07-09T22:29:14.282Z",
+    "stats": {
+      "scraped": 6,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 3,
+      "noMatch": 3,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "rice": {
+    "importedAt": "2026-07-09T22:29:22.534Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "richland": {
+    "importedAt": "2026-07-09T22:30:08.814Z",
+    "stats": {
+      "scraped": 20,
+      "created": 0,
+      "autoMatched": 6,
+      "sentToReview": 9,
+      "noMatch": 5,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "ridgefield": {
+    "importedAt": "2026-07-09T22:30:38.035Z",
+    "stats": {
+      "scraped": 11,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 4,
+      "noMatch": 7,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  },
+  "ritzville": {
+    "importedAt": "2026-07-09T22:30:57.638Z",
+    "stats": {
+      "scraped": 8,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 7,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "rochester": {
+    "importedAt": "2026-07-09T22:31:14.783Z",
+    "stats": {
+      "scraped": 7,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 2,
+      "noMatch": 5,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "rockport": {
+    "importedAt": "2026-07-09T22:31:20.424Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "rosalia": {
+    "importedAt": "2026-07-09T22:31:29.230Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 2,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "roy": {
+    "importedAt": "2026-07-09T22:31:38.416Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 1,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "royal-city": {
+    "importedAt": "2026-07-09T22:31:43.705Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "salkum": {
+    "importedAt": "2026-07-09T22:31:49.261Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "sammamish": {
+    "importedAt": "2026-07-09T22:32:06.533Z",
+    "stats": {
+      "scraped": 8,
+      "created": 0,
+      "autoMatched": 2,
+      "sentToReview": 2,
+      "noMatch": 4,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "seabeck": {
+    "importedAt": "2026-07-09T22:32:15.075Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 0,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "seatac": {
+    "importedAt": "2026-07-09T22:32:38.508Z",
+    "stats": {
+      "scraped": 11,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 1,
+      "noMatch": 9,
+      "geocodeFailed": 6,
+      "alreadyLinked": 0
+    }
+  },
+  "seattle": {
+    "importedAt": "2026-07-09T22:33:22.723Z",
+    "stats": {
+      "scraped": 20,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 10,
+      "noMatch": 4,
+      "geocodeFailed": 3,
+      "alreadyLinked": 6
+    }
+  },
+  "seaview": {
+    "importedAt": "2026-07-09T22:33:32.827Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "sedro-woolley": {
+    "importedAt": "2026-07-09T22:34:12.807Z",
+    "stats": {
+      "scraped": 19,
+      "created": 0,
+      "autoMatched": 3,
+      "sentToReview": 6,
+      "noMatch": 10,
+      "geocodeFailed": 5,
+      "alreadyLinked": 0
+    }
+  },
+  "selah": {
+    "importedAt": "2026-07-10T16:08:29.910Z",
+    "stats": {
+      "scraped": 8,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 2,
+      "noMatch": 5,
+      "geocodeFailed": 4,
+      "alreadyLinked": 0
+    }
+  },
+  "sequim": {
+    "importedAt": "2026-07-10T16:09:35.348Z",
+    "stats": {
+      "scraped": 29,
+      "created": 0,
+      "autoMatched": 6,
+      "sentToReview": 7,
+      "noMatch": 16,
+      "geocodeFailed": 12,
+      "alreadyLinked": 0
+    }
+  },
+  "shelton": {
+    "importedAt": "2026-07-10T16:10:31.003Z",
+    "stats": {
+      "scraped": 28,
+      "created": 0,
+      "autoMatched": 1,
+      "sentToReview": 11,
+      "noMatch": 16,
+      "geocodeFailed": 7,
+      "alreadyLinked": 0
+    }
+  },
+  "shoreline": {
+    "importedAt": "2026-07-10T16:11:48.487Z",
+    "stats": {
+      "scraped": 40,
+      "created": 0,
+      "autoMatched": 5,
+      "sentToReview": 3,
+      "noMatch": 32,
+      "geocodeFailed": 27,
+      "alreadyLinked": 0
+    }
+  },
+  "silverdale": {
+    "importedAt": "2026-07-10T16:12:18.484Z",
+    "stats": {
+      "scraped": 13,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 2,
+      "noMatch": 11,
+      "geocodeFailed": 5,
+      "alreadyLinked": 0
+    }
+  },
+  "snohomish": {
+    "importedAt": "2026-07-10T16:13:25.094Z",
+    "stats": {
+      "scraped": 34,
+      "created": 0,
+      "autoMatched": 3,
+      "sentToReview": 11,
+      "noMatch": 20,
+      "geocodeFailed": 11,
+      "alreadyLinked": 0
+    }
+  },
+  "snoqualmie": {
+    "importedAt": "2026-07-10T16:13:38.725Z",
+    "stats": {
+      "scraped": 6,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 0,
+      "noMatch": 6,
+      "geocodeFailed": 5,
+      "alreadyLinked": 0
+    }
+  },
+  "soap-lake": {
+    "importedAt": "2026-07-10T16:13:49.343Z",
+    "stats": {
+      "scraped": 3,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 2,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "spanaway": {
+    "importedAt": "2026-07-10T16:14:28.733Z",
+    "stats": {
+      "scraped": 20,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 2,
+      "noMatch": 18,
+      "geocodeFailed": 6,
+      "alreadyLinked": 0
+    }
+  },
+  "spokane": {
+    "importedAt": "2026-07-10T16:15:12.173Z",
+    "stats": {
+      "scraped": 20,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 10,
+      "noMatch": 8,
+      "geocodeFailed": 2,
+      "alreadyLinked": 2
+    }
+  },
+  "spokane-valley": {
+    "importedAt": "2026-07-10T16:16:49.749Z",
+    "stats": {
+      "scraped": 45,
+      "created": 1,
+      "autoMatched": 5,
+      "sentToReview": 7,
+      "noMatch": 33,
+      "geocodeFailed": 20,
+      "alreadyLinked": 0
+    }
+  },
+  "st-john": {
+    "importedAt": "2026-07-10T16:16:58.082Z",
+    "stats": {
+      "scraped": 2,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 1,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "stanwood": {
+    "importedAt": "2026-07-10T16:17:30.645Z",
+    "stats": {
+      "scraped": 17,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 16,
+      "geocodeFailed": 10,
+      "alreadyLinked": 0
+    }
+  },
+  "steilacoom": {
+    "importedAt": "2026-07-10T16:17:38.362Z",
+    "stats": {
+      "scraped": 1,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 0,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "stevenson": {
+    "importedAt": "2026-07-10T16:17:52.771Z",
+    "stats": {
+      "scraped": 6,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 4,
+      "noMatch": 2,
+      "geocodeFailed": 1,
+      "alreadyLinked": 0
+    }
+  },
+  "sultan": {
+    "importedAt": "2026-07-10T16:18:05.062Z",
+    "stats": {
+      "scraped": 5,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 1,
+      "noMatch": 4,
+      "geocodeFailed": 2,
+      "alreadyLinked": 0
+    }
+  },
+  "sumas": {
+    "importedAt": "2026-07-10T16:18:12.333Z",
+    "stats": {
+      "scraped": 2,
+      "created": 1,
+      "autoMatched": 1,
+      "sentToReview": 0,
+      "noMatch": 1,
+      "geocodeFailed": 0,
+      "alreadyLinked": 0
+    }
+  },
+  "sumner": {
+    "importedAt": "2026-07-10T16:18:56.553Z",
+    "stats": {
+      "scraped": 22,
+      "created": 0,
+      "autoMatched": 0,
+      "sentToReview": 14,
+      "noMatch": 8,
+      "geocodeFailed": 6,
+      "alreadyLinked": 0
+    }
+  },
+  "sunnyside": {
+    "importedAt": "2026-07-10T16:19:59.281Z",
+    "stats": {
+      "scraped": 30,
+      "created": 0,
+      "autoMatched": 3,
+      "sentToReview": 18,
+      "noMatch": 9,
+      "geocodeFailed": 3,
+      "alreadyLinked": 0
+    }
+  }
+}

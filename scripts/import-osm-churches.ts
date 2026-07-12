@@ -10,17 +10,27 @@
  *
  * Re-running this script is safe: each OSM element is matched by a stable
  * `osmId` (e.g. "node/123456") to avoid creating duplicates. If a church
- * with that osmId already exists, it's left completely untouched — no
- * fields are overwritten — so admin corrections and approved suggestions
- * (see app/admin/church-edit-queue) always survive a re-import. It never
- * touches manually-seeded churches either (which have osmId = null).
+ * with that osmId already exists, its Church row is left completely
+ * untouched — no fields are overwritten — so admin corrections and approved
+ * suggestions (see app/admin/church-edit-queue) always survive a re-import.
+ * It never touches manually-seeded churches either (which have osmId =
+ * null).
+ *
+ * Every element also gets a ChurchSource row (see prisma/schema.prisma's
+ * "Data provenance" section) with the verbatim raw OSM tags — for brand new
+ * churches this immediately becomes their first ChurchFieldSource
+ * provenance; for already-imported churches it's just recorded (OSM stays
+ * LOW confidence by default) so the merge pipeline and admin review queue
+ * have OSM's latest data to compare against other sources without this
+ * script itself ever needing to overwrite anything.
  *
  * Usage: npx tsx scripts/import-osm-churches.ts [--state=WA] [--dry-run]
  */
 import "dotenv/config"
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient, ChurchFieldName } from "@prisma/client"
 import { PrismaPg } from "@prisma/adapter-pg"
 import { loadDenominationIndex, matchDenominationWithIndex } from "../lib/denomination-matching"
+import { DEFAULT_CONFIDENCE_BY_SOURCE_TYPE } from "../lib/church-sources"
 
 const prisma = new PrismaClient({
   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
@@ -257,9 +267,28 @@ async function main() {
       lat: c.lat,
       lng: c.lng,
       website: c.tags.website ?? c.tags["contact:website"] ?? null,
+      phone: c.tags.phone ?? c.tags["contact:phone"] ?? null,
       serviceTimes: c.tags.service_times ? [c.tags.service_times] : [],
       osmId: c.osmId,
     }
+
+    // The ChurchSource snapshot uses the raw denomination tag (not
+    // title-cased) and no `slug`/`denominationId`, since those are
+    // Church-only concepts — a source just reports what it saw.
+    const sourceFields = {
+      name: c.name,
+      address: data.address || null,
+      city,
+      state: STATE_CODE,
+      zip: data.zip,
+      lat: c.lat,
+      lng: c.lng,
+      website: data.website,
+      phone: data.phone,
+      serviceTimes: data.serviceTimes,
+      denomination: rawDenominationFromTags(c.tags),
+    }
+    const rawData = { osmType: c.type, osmId: c.osmId, tags: c.tags }
 
     // Existing churches are never updated by this script, full stop — not
     // just denominationId. Once a church is imported, an admin may have
@@ -281,10 +310,62 @@ async function main() {
     if (existing) {
       existingSlugs.add(slug)
       alreadyPresent++
+      await prisma.churchSource.upsert({
+        where: { sourceType_externalId: { sourceType: "OSM", externalId: c.osmId } },
+        update: { ...sourceFields, rawData, churchId: existing.id },
+        create: {
+          ...sourceFields,
+          rawData,
+          sourceType: "OSM",
+          externalId: c.osmId,
+          confidence: DEFAULT_CONFIDENCE_BY_SOURCE_TYPE.OSM,
+          churchId: existing.id,
+        },
+      })
     } else {
-      await prisma.church.create({ data })
+      const church = await prisma.church.create({ data })
       existingSlugs.add(slug)
       created++
+
+      const source = await prisma.churchSource.upsert({
+        where: { sourceType_externalId: { sourceType: "OSM", externalId: c.osmId } },
+        update: { ...sourceFields, rawData, churchId: church.id },
+        create: {
+          ...sourceFields,
+          rawData,
+          sourceType: "OSM",
+          externalId: c.osmId,
+          confidence: DEFAULT_CONFIDENCE_BY_SOURCE_TYPE.OSM,
+          churchId: church.id,
+        },
+      })
+
+      // Bulk initial provenance — no confidence comparison needed since this
+      // church didn't exist a moment ago, so there's nothing to conflict with.
+      const initialFields: [ChurchFieldName, unknown][] = [
+        [ChurchFieldName.NAME, sourceFields.name],
+        [ChurchFieldName.ADDRESS, sourceFields.address],
+        [ChurchFieldName.CITY, sourceFields.city],
+        [ChurchFieldName.STATE, sourceFields.state],
+        [ChurchFieldName.ZIP, sourceFields.zip],
+        [ChurchFieldName.LAT, sourceFields.lat],
+        [ChurchFieldName.LNG, sourceFields.lng],
+        [ChurchFieldName.WEBSITE, sourceFields.website],
+        [ChurchFieldName.PHONE, sourceFields.phone],
+        [ChurchFieldName.SERVICE_TIMES, sourceFields.serviceTimes.length > 0 ? sourceFields.serviceTimes : null],
+        [ChurchFieldName.DENOMINATION, sourceFields.denomination],
+      ]
+      await prisma.churchFieldSource.createMany({
+        data: initialFields
+          .filter(([, value]) => value !== null && value !== undefined && value !== "")
+          .map(([field]) => ({
+            churchId: church.id,
+            field,
+            sourceType: "OSM" as const,
+            sourceId: source.id,
+            confidence: DEFAULT_CONFIDENCE_BY_SOURCE_TYPE.OSM,
+          })),
+      })
     }
 
     if ((i + 1) % 250 === 0) {

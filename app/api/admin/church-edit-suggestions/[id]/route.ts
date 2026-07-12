@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from "next/server"
+import { ChurchFieldName } from "@prisma/client"
 import { prisma } from "@/lib/prisma"
 import { suggestionDecisionSchema } from "@/lib/validations"
-import { jsonError, ApiError, requireAdmin } from "@/lib/api-utils"
+import { jsonError, ApiError, requireModerator } from "@/lib/api-utils"
+import { setFieldProvenance } from "@/lib/church-field-sync"
 
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const admin = await requireAdmin()
+    const admin = await requireModerator()
     const { id } = await params
 
     const body = await req.json()
@@ -51,6 +53,38 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
           data: { status: "ACCEPTED", reviewedById: admin.id, reviewedAt: new Date() },
         }),
       ])
+
+      // Track provenance for what actually changed — a moderator or admin
+      // explicitly accepting a suggestion is itself the authoritative
+      // decision, so it always wins (force: true), same as any other
+      // deliberate manual edit. See lib/church-field-sync.ts for the
+      // general strictly-higher-confidence rule this deliberately bypasses
+      // here.
+      const attribution = { sourceType: "USER_SUBMITTED" as const, confidence: "HIGH" as const, setById: admin.id }
+      const fieldToTrack: [string, ChurchFieldName][] = [
+        ["website", ChurchFieldName.WEBSITE],
+        ["address", ChurchFieldName.ADDRESS],
+        ["city", ChurchFieldName.CITY],
+        ["serviceTimes", ChurchFieldName.SERVICE_TIMES],
+        ["summary", ChurchFieldName.SUMMARY],
+      ]
+      for (const [column, field] of fieldToTrack) {
+        if (column in churchUpdate) {
+          await setFieldProvenance(prisma, suggestion.churchId, field, attribution, { force: true })
+        }
+      }
+      const tagFieldsTouched: [string[], ChurchFieldName][] = [
+        [suggestion.addAccessibilityTagIds, ChurchFieldName.ACCESSIBILITY_TAGS],
+        [suggestion.addWorshipTagIds, ChurchFieldName.WORSHIP_TAGS],
+        [suggestion.addCommunityTagIds, ChurchFieldName.COMMUNITY_TAGS],
+        [suggestion.addMentalHealthTagIds, ChurchFieldName.MENTAL_HEALTH_TAGS],
+        [suggestion.addTheologyTagIds, ChurchFieldName.THEOLOGY_TAGS],
+      ]
+      for (const [ids, field] of tagFieldsTouched) {
+        if (ids.length > 0) {
+          await setFieldProvenance(prisma, suggestion.churchId, field, attribution, { force: true })
+        }
+      }
     } else {
       await prisma.churchEditSuggestion.update({
         where: { id },

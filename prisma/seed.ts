@@ -58,7 +58,16 @@ const ACCESSIBILITY_TAGS = [
 
 const WORSHIP_TAGS = ["Contemporary", "Traditional", "Liturgical", "Blended"]
 
-const COMMUNITY_TAGS = ["College Students", "Young Adults", "Families", "Singles", "Seniors"]
+// Keep in sync with lib/data.ts filterGroups' "Community" options.
+const COMMUNITY_TAGS = [
+  "College Students",
+  "Young Adults",
+  "Families",
+  "Singles",
+  "Seniors",
+  "Kids Ministry",
+  "Youth Ministry",
+]
 
 const MENTAL_HEALTH_TAGS = [
   "Counseling Available",
@@ -416,6 +425,13 @@ const CHURCHES: SeedChurch[] = [
   },
 ]
 
+// --no-demo skips the sample CHURCHES below (fake churches, stories, filler
+// visitors) — for seeding a real environment (e.g. production) with just
+// the reference taxonomy (denominations, identities, tags) and the admin
+// account. Local dev's default `npm run db:seed` is unaffected — it still
+// seeds the full demo dataset unless this flag is passed explicitly.
+const skipDemoData = process.argv.includes("--no-demo")
+
 async function main() {
   console.log("Seeding denominations...")
   await seedDenominations(prisma)
@@ -472,6 +488,12 @@ async function main() {
     create: { email: "admin@seed.opendoors.local", displayName: "Admin", role: "ADMIN" },
   })
   console.log(`Admin demo account: ${admin.email} (sign in via magic link, then approve moderation queue at /admin/moderation)`) // eslint-disable-line no-console
+
+  if (skipDemoData) {
+    console.log("--no-demo passed — skipping sample churches, stories, and filler visitors.")
+    console.log("Done.")
+    return
+  }
 
   for (const church of CHURCHES) {
     console.log(`Seeding ${church.name}...`)

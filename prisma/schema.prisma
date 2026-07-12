@@ -81,6 +81,12 @@ model User {
   reviewedSuggestions  DenominationSuggestion[]
   submittedChurchEdits ChurchEditSuggestion[]   @relation("SubmittedChurchEdits")
   reviewedChurchEdits  ChurchEditSuggestion[]   @relation("ReviewedChurchEdits")
+  submittedSources     ChurchSource[]
+  dismissedSources     ChurchSource[]           @relation("DismissedChurchSources")
+  setFieldSources      ChurchFieldSource[]
+  reviewedMerges       ChurchMergeCandidate[]
+  requestedDeletions   ChurchDeletionRequest[]  @relation("RequestedChurchDeletions")
+  reviewedDeletions    ChurchDeletionRequest[]  @relation("ReviewedChurchDeletions")
   accounts             Account[]
   sessions             Session[]
 }
@@ -125,6 +131,7 @@ model Church {
   lat           Float
   lng           Float
   website       String?
+  phone         String?
   serviceTimes  String[]
   attendance    String?
   coverImage    String?
@@ -149,6 +156,20 @@ model Church {
   verification    ChurchVerification?
   suggestions     DenominationSuggestion[]
   editSuggestions ChurchEditSuggestion[]
+
+  // Multi-source data pipeline — see the "Data provenance" section below.
+  // A church can have several ChurchSource rows (one per source that's ever
+  // reported data about it, e.g. one from OSM and one manually entered from
+  // a denomination directory) once merged, plus one ChurchFieldSource per
+  // scalar field recording which of those currently supplies it.
+  sources      ChurchSource[]
+  fieldSources ChurchFieldSource[]
+  associations ChurchAssociation[]
+
+  // Deleting a church is irreversible (see app/api/admin/churches/[id]/delete),
+  // so it's reserved for ADMIN. A MODERATOR can only request it — see
+  // ChurchDeletionRequest below.
+  deletionRequests ChurchDeletionRequest[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -248,6 +269,297 @@ model ChurchEditSuggestion {
 
   @@index([churchId])
   @@index([status])
+}
+
+// A MODERATOR can request a church be deleted (e.g. it was imported by
+// mistake and isn't a real church) but can't perform the deletion itself —
+// that's still ADMIN-only and irreversible (see
+// app/api/admin/churches/[id]/delete). Approving a request actually deletes
+// the church (which cascades away this row too, via onDelete: Cascade on
+// churchId); dismissing just declines the request and keeps the church.
+model ChurchDeletionRequest {
+  id       String @id @default(cuid())
+  churchId String
+  church   Church @relation(fields: [churchId], references: [id], onDelete: Cascade)
+
+  reason String @db.Text
+
+  requestedById String?
+  requestedBy   User?   @relation("RequestedChurchDeletions", fields: [requestedById], references: [id], onDelete: SetNull)
+
+  status       DeletionRequestStatus @default(PENDING)
+  reviewedById String?
+  reviewedBy   User?                 @relation("ReviewedChurchDeletions", fields: [reviewedById], references: [id], onDelete: SetNull)
+  reviewedAt   DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([churchId])
+  @@index([status])
+}
+
+enum DeletionRequestStatus {
+  PENDING
+  APPROVED
+  DISMISSED
+}
+
+// ---------- Data provenance / multi-source pipeline ----------
+//
+// Church itself stays the single canonical record every other part of the
+// app reads (church pages, search, saves, experiences all still just point
+// at Church, unchanged). What's new is *how* that canonical record gets
+// populated and kept up to date, from more than just OpenStreetMap:
+//
+//   1. Each raw import/entry from a source becomes its own ChurchSource row
+//      — OSM, a manually-entered directory listing (Shepherd's Stream, a
+//      denomination directory), a church's own website, or an approved
+//      ChurchEditSuggestion. The raw payload is preserved verbatim in
+//      `rawData` even after merging, so nothing is ever lost to
+//      normalization.
+//   2. lib/church-matching.ts scores every pair of not-yet-merged
+//      ChurchSource rows for "is this the same real-world church" —
+//      scripts/generate-merge-candidates.ts creates a ChurchMergeCandidate
+//      for every pair worth looking at.
+//   3. scripts/apply-merges.ts auto-merges candidates that score above the
+//      high-confidence threshold; everything in between sits PENDING in the
+//      admin Merge Review queue for a human decision, and low scores are
+//      simply never turned into a candidate at all (see
+//      lib/church-matching.ts for thresholds).
+//   4. On merge, a ChurchFieldSource row per Church field records *which*
+//      source currently supplies it and at what confidence — a field is
+//      only ever overwritten by a source with strictly higher confidence
+//      (or one that fills in something previously unknown), never blindly
+//      replaced. This is what lets the UI show "Source: OpenStreetMap" /
+//      "Verified from church website" / etc. next to any given fact.
+
+enum ChurchSourceType {
+  OSM
+  SHEPHERDS_STREAM
+  DENOMINATION_DIRECTORY
+  CHURCH_WEBSITE
+  USER_SUBMITTED
+  ADMIN
+  // A general third-party directory (churchfinder.com), imported via
+  // scripts/import-church-finder.ts — distinct from SHEPHERDS_STREAM (a
+  // different directory with no API, manual-entry only) and from
+  // DENOMINATION_DIRECTORY (official, denomination-run listings).
+  CHURCH_FINDER
+}
+
+// How much a given source's data should be trusted, independent of which
+// specific source type it is (e.g. an ADMIN entry that's just a quick guess
+// should still be markable UNVERIFIED). Ordering below is the trust order
+// used when deciding whether a new value is allowed to overwrite an
+// existing field — see lib/church-matching.ts's CONFIDENCE_RANK.
+enum SourceConfidence {
+  UNVERIFIED
+  LOW
+  MEDIUM
+  HIGH
+}
+
+// The Church (and, for the four *_TAGS entries, ChurchTag-category)
+// attributes we track per-source provenance for. Deliberately a fixed list
+// rather than a free-text field name, so ChurchFieldSource stays type-safe
+// and every value here has a corresponding real column/relation on Church.
+enum ChurchFieldName {
+  NAME
+  ADDRESS
+  CITY
+  STATE
+  ZIP
+  LAT
+  LNG
+  WEBSITE
+  PHONE
+  SERVICE_TIMES
+  ATTENDANCE
+  SUMMARY
+  COVER_IMAGE
+  LOGO_IMAGE
+  DENOMINATION
+  ACCESSIBILITY_TAGS
+  WORSHIP_TAGS
+  COMMUNITY_TAGS
+  MENTAL_HEALTH_TAGS
+  THEOLOGY_TAGS
+}
+
+enum MergeStatus {
+  PENDING
+  AUTO_MERGED
+  APPROVED
+  REJECTED
+  // Admin looked at it and decided it's a legitimate near-miss, not a
+  // duplicate (e.g. two different churches that happen to share a
+  // building) — distinct from REJECTED so it's not just "the same as
+  // rejected," it's "deliberately confirmed as two different churches."
+  IGNORED
+}
+
+// One raw record from one source about (what may or may not turn out to
+// be) one church. Never mutated to "match" other sources — normalization
+// happens only in the flat fields below, `rawData` stays exactly as
+// received. `churchId` starts null and is only set once this source has
+// been merged into a canonical Church (see MergeStatus above).
+model ChurchSource {
+  id String @id @default(cuid())
+
+  sourceType ChurchSourceType
+  // The source's own identifier for this record — an OSM "node/12345", a
+  // directory's internal id if it has one, or just the source URL for a
+  // manually-entered directory/website lookup. Uniqueness is scoped to
+  // sourceType, not global, since different sources have unrelated ID
+  // schemes.
+  externalId String
+
+  rawData Json
+
+  // Normalized snapshot at import/entry time — flat and indexable (unlike
+  // rawData) so the matching engine and admin UI can query/compare
+  // directly without re-parsing JSON every time.
+  name            String
+  address         String?
+  city            String?
+  state           String?
+  zip             String?
+  lat             Float?
+  lng             Float?
+  website         String?
+  phone           String?
+  serviceTimes    String[]
+  denomination    String?
+  // Free text as the source describes it (e.g. "Contemporary", "Traditional
+  // with communion weekly") — mapped onto our curated WORSHIP tag
+  // vocabulary at merge time, not stored as a Tag id here since a raw
+  // source has no knowledge of our internal taxonomy.
+  worshipStyleRaw String?
+  // Free text ministry/program names as the source lists them (e.g. "Kids
+  // Ministry", "Youth Group", "College Ministry") — same idea, mapped onto
+  // curated COMMUNITY tags at merge time via best-effort label matching;
+  // anything that doesn't match an existing tag is surfaced for an admin
+  // to add to the taxonomy rather than silently dropped.
+  ministryTagsRaw String[]
+
+  confidence SourceConfidence @default(UNVERIFIED)
+
+  churchId String?
+  church   Church? @relation(fields: [churchId], references: [id], onDelete: SetNull)
+
+  // Set when an admin looks at an unmatched orphan in the merge queue and
+  // decides it isn't worth turning into a church (an org/diocese page, a
+  // listing too sparse to use, a duplicate that will never geocode, etc.)
+  // — the record itself is never deleted (raw data is never blindly
+  // discarded), just hidden from the "unmatched listings" queue going
+  // forward.
+  dismissedAt   DateTime?
+  dismissedById String?
+  dismissedBy   User?     @relation("DismissedChurchSources", fields: [dismissedById], references: [id], onDelete: SetNull)
+
+  // Who entered this, for USER_SUBMITTED/ADMIN types (manual directory
+  // lookups, church-submitted info). Null for OSM.
+  submittedById String?
+  submittedBy   User?   @relation(fields: [submittedById], references: [id], onDelete: SetNull)
+
+  fetchedAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  fieldSources     ChurchFieldSource[]
+  mergeCandidatesA ChurchMergeCandidate[] @relation("CandidateSourceA")
+  mergeCandidatesB ChurchMergeCandidate[] @relation("CandidateSourceB")
+
+  @@unique([sourceType, externalId])
+  @@index([churchId])
+  @@index([lat, lng])
+}
+
+// Which source currently supplies a given Church field, and how much it
+// should be trusted — one row per (church, field). This is the thing the
+// public UI reads to show "Source: OpenStreetMap" / "Verified from church
+// website" next to a fact, and what the merge logic consults before
+// deciding whether a new value is allowed to overwrite the current one.
+model ChurchFieldSource {
+  id String @id @default(cuid())
+
+  churchId String
+  church   Church @relation(fields: [churchId], references: [id], onDelete: Cascade)
+
+  field ChurchFieldName
+
+  sourceType ChurchSourceType
+  sourceId   String?
+  source     ChurchSource?    @relation(fields: [sourceId], references: [id], onDelete: SetNull)
+
+  confidence SourceConfidence
+
+  // Who/what last set this field this way — an admin choosing which source
+  // wins during a manual merge review, or the merge pipeline running
+  // unattended (null in that case).
+  setById String?
+  setBy   User?    @relation(fields: [setById], references: [id], onDelete: SetNull)
+  setAt   DateTime @default(now())
+
+  @@unique([churchId, field])
+  @@index([churchId])
+}
+
+// A candidate pairing of two not-yet-reconciled ChurchSource rows that
+// might describe the same real-world church, produced by
+// scripts/generate-merge-candidates.ts. Always ordered so sourceAId <
+// sourceBId (enforced by the generator, not the database) so the same pair
+// can't produce two candidates in opposite order.
+model ChurchMergeCandidate {
+  id String @id @default(cuid())
+
+  sourceAId String
+  sourceA   ChurchSource @relation("CandidateSourceA", fields: [sourceAId], references: [id], onDelete: Cascade)
+  sourceBId String
+  sourceB   ChurchSource @relation("CandidateSourceB", fields: [sourceBId], references: [id], onDelete: Cascade)
+
+  score          Int
+  // { name: number, address: number, cityStateZip: number, geo: number, website: number } —
+  // see lib/church-matching.ts. Stored so an admin reviewing the queue (or a
+  // future re-tuning of the algorithm) can see *why* a score landed where
+  // it did, not just the final number.
+  scoreBreakdown Json
+
+  status       MergeStatus @default(PENDING)
+  reviewedById String?
+  reviewedBy   User?       @relation(fields: [reviewedById], references: [id], onDelete: SetNull)
+  reviewedAt   DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@unique([sourceAId, sourceBId])
+  @@index([status])
+  @@index([score])
+}
+
+// A looser network/fellowship a church can belong to alongside (or instead
+// of) a formal Denomination — e.g. a regional church-planting network or a
+// cooperative like the Willow Creek Association. Many-to-many with Church,
+// unlike Denomination which is one-per-church, since a congregation can
+// belong to several associations at once without that implying a formal
+// denominational tie.
+model Association {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  website     String?
+  description String?  @db.Text
+  createdAt   DateTime @default(now())
+
+  churches ChurchAssociation[]
+}
+
+model ChurchAssociation {
+  churchId      String
+  associationId String
+
+  church      Church      @relation(fields: [churchId], references: [id], onDelete: Cascade)
+  association Association @relation(fields: [associationId], references: [id], onDelete: Cascade)
+
+  @@id([churchId, associationId])
 }
 
 // ---------- Denominational Context ----------
