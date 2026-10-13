@@ -3,6 +3,7 @@
 import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from "react-leaflet"
 import L from "leaflet"
 import "leaflet/dist/leaflet.css"
+import { BASEMAP_TILE_URL } from "@/lib/basemap"
 import { useEffect, useRef } from "react"
 import { experienceMeta } from "@/lib/data"
 import type { ChurchListing } from "@/lib/types"
@@ -136,7 +137,7 @@ export default function ChurchMap({
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>'
-        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+        url={BASEMAP_TILE_URL}
       />
       {fitToChurches && <FitBounds churches={churches} />}
       {onBoundsChange && <BoundsWatcher onBoundsChange={onBoundsChange} />}

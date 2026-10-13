@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { cn } from "@/lib/utils"
+import { basemapTileUrl } from "@/lib/basemap"
 
 /**
  * Cheap, non-interactive stand-in for a church's cover photo in dense lists
@@ -34,7 +35,7 @@ export function ChurchLocationStaticThumb({
   className?: string
 }) {
   const { x, y, z } = latLngToTile(lat, lng, zoom)
-  const src = `https://a.basemaps.cartocdn.com/rastertiles/voyager/${z}/${x}/${y}.png`
+  const src = basemapTileUrl(z, x, y)
 
   return (
     <div className={cn("relative overflow-hidden bg-secondary/40", className)}>

@@ -3,6 +3,7 @@
 import { MapContainer, TileLayer, Marker } from "react-leaflet"
 import L from "leaflet"
 import "leaflet/dist/leaflet.css"
+import { BASEMAP_TILE_URL } from "@/lib/basemap"
 
 function dotIcon() {
   return L.divIcon({
@@ -49,7 +50,7 @@ export default function ChurchLocationThumbMap({
       keyboard={false}
       attributionControl={showAttribution}
     >
-      <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" />
+      <TileLayer url={BASEMAP_TILE_URL} />
       <Marker position={[lat, lng]} icon={dotIcon()} />
     </MapContainer>
   )
